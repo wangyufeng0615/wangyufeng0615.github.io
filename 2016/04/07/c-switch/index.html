@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C 语言中为什么有 switch？ | 七系 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如果文中有BUG，请留言反馈，谢谢~
+
+C语言中，有且仅有三种基本语句结构
+
+顺序结构
+循环结构(while, for等)
+条件结构
+
+其中，条件结构有if-else和switch-case两种。还有三元运算符，形如a &amp;gt; b ? c : d;不常用。
+经常地，if-else结构和switch-case结构可以相互转化。比如：
+1234567switch (day)&amp;#123;    cas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C 语言中为什么有 switch？ | 七系">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/c-switch/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如果文中有BUG，请留言反馈，谢谢~
+
+C语言中，有且仅有三种基本语句结构
+
+顺序结构
+循环结构(while, for等)
+条件结构
+
+其中，条件结构有if-else和switch-case两种。还有三元运算符，形如a &amp;gt; b ? c : d;不常用。
+经常地，if-else结构和switch-case结构可以相互转化。比如：
+1234567switch (day)&amp;#123;    cas">
+<meta property="og:updated_time" content="2016-04-07T11:48:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C 语言中为什么有 switch？ | 七系">
+<meta name="twitter:description" content="如果文中有BUG，请留言反馈，谢谢~
+
+C语言中，有且仅有三种基本语句结构
+
+顺序结构
+循环结构(while, for等)
+条件结构
+
+其中，条件结构有if-else和switch-case两种。还有三元运算符，形如a &amp;gt; b ? c : d;不常用。
+经常地，if-else结构和switch-case结构可以相互转化。比如：
+1234567switch (day)&amp;#123;    cas">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c-switch" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/07/c-switch/" class="article-date">
+  <time datetime="2016-04-07T10:30:02.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C 语言中为什么有 switch？ | 七系
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果文中有BUG，请留言反馈，谢谢~</p>
+<hr>
+<p>C语言中，有且仅有三种基本语句结构</p>
+<ol>
+<li>顺序结构</li>
+<li>循环结构(<code>while</code>, <code>for</code>等)</li>
+<li>条件结构</li>
+</ol>
+<p>其中，条件结构有<code>if-else</code>和<code>switch-case</code>两种。还有<code>三元运算符</code>，形如<code>a &gt; b ? c : d;</code>不常用。</p>
+<p>经常地，<code>if-else</code>结构和<code>switch-case</code>结构可以相互转化。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">switch (day)</div><div class="line">&#123;</div><div class="line">    case &apos;1&apos; : printf(&quot;Monday\n&quot;);  break;</div><div class="line">    case &apos;2&apos; : printf(&quot;Tuesday\n&quot;); break;</div><div class="line">    case 1 : printf(&quot;1\n&quot;); break;	//注意1和&apos;1&apos;的区别</div><div class="line">    default : printf(&quot;error\n&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以转换成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">if (day == &apos;1&apos;)</div><div class="line">&#123;</div><div class="line">    printf(&quot;Monday\n&quot;);</div><div class="line">&#125; </div><div class="line">else if (day == &apos;2&apos;)</div><div class="line">&#123;</div><div class="line">    printf(&quot;Tuesday\n&quot;);</div><div class="line">&#125; </div><div class="line">else if (day == 1)</div><div class="line">&#123;</div><div class="line">    printf(&quot;1\n&quot;);</div><div class="line">&#125;</div><div class="line">else</div><div class="line">&#123;</div><div class="line">    printf(&quot;error\n&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>两者实现的功能是一样的。一般来说，<code>if-else</code>结构相对于<code>switch-case</code>结构来说更为灵活一些，比如，分支的条件可以是”一定范围”，但<code>switch-case</code>结构的条件变量必须是整数或字符，或枚举型。</p>
+<hr>
+<p>题外话：这里想强调的是，<code>switch-case</code>结构中的条件变量（例如本例中的<code>day</code>），如果存的是整数，需要注意数字和字符的区别。例如</p>
+<p>1</p>
+<p>表示整数1。而</p>
+<p>`1`</p>
+<p>表示字符`1`，对应的ASCII码为49。</p>
+<p>具体使用哪种，取决于你条件变量(<code>day</code>)的类型，例如，<code>int day;</code>或是<code>char day;</code>分别对应例子的前者和后者。这种<code>int</code>和<code>char</code>类型间的关系容易混淆，这是我学习 C 语言过程的困扰过我的问题。</p>
+<p>另外，在使用<code>switch-case</code>语句时，容易漏<code>break;</code>语句和<code>default</code>默认分支。虽然不写也可以，但容易引起BUG，且编译器不会报错。</p>
+<hr>
+<p>上面提到，<code>switch-case</code>结构的条件变量只能是一个确定的值，比如数字或单个字符，所以有时候<code>switch-case</code>结构并不适用，比如我这届以及我下一届的 C 语言课程都有这样一道课后作业，大意是90-100分是优，80-89分是良，要求统计全班优良信息，要求用<code>if-else</code>结构和<code>switch-case</code>结构分别实现。这种”范围判断”的情况，就不适合使用<code>switch-case</code>结构。这种情况，用<code>if-else</code>结构的话，很方便可以实现，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (grade &lt; 100 &amp;&amp; grade &gt; 90)</div><div class="line">&#123;</div><div class="line">	//xxx</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，下面这样是不行滴，至少在C语言中不行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if (90 &lt; grade &lt; 100)</div></pre></td></tr></table></figure>
+<p>那么，或许产生这样的疑问：既然所有的<code>switch-case</code>结构都能转换成<code>if-else</code>结构，那为什么还要有<code>switch-case</code>结构呢？</p>
+<p>结合资料，我说一下我自己的看法。</p>
+<p>###是为了速度快</p>
+<p>这学期我们学”计算机组成原理”，学到了MIPS指令这块，书中提到了<code>switch-case</code>语句的实现和<code>if-else</code>语句的区别之处，摘抄如下（《计算机组成与设计》中文第五版 P64）</p>
+<blockquote>
+<p>大多数程序设计语言中都包括 case 和 switch 语句，使得程序员可以根据某个变量的值选择不同分支之一。实现 switch 语句的最简单方法是借助一系列的条件判断，将 switch 语句转化为 if-then-else 语句。</p>
+<p>有时候另一种更有效的方法是将多个指令序列分支的地址编码为一张表，即<strong>转移地址表(jump address table)</strong>或<strong>转移表(jump table)</strong>，这样程序只需索引该表即可跳转到恰当的指令序列。</p>
+</blockquote>
+<p>总之，用这种转移表，再使用<code>jr</code>(jump register)指令，就能直接跳转到寄存器中存放的地址。速度会比较快。<code>if-else</code>结构，需要从头到尾一一比对，<code>switch-case</code>结构，直接查表就可以了。这种思路类似我觉得类似于路由控制表，即，建立一种一一对应的关系，避免遍历。</p>
+<p>C语言是上世纪70年代发明的，那时候计算机的速度远远不及今天这样快，计算能力也不富裕，所以性能上能省则省。像当今时代的 Java、Python 等等编程语言，执行速度通常比C语言慢，但是换来了更好的安全性、易用性等。Python 语言的语法继承自C语言，但是就没有<code>switch-case</code>结构。</p>
+<p>我想，有种更加量化的办法来验证两者的区别，即，用两种结构分别写两段功能上等价的代码，然后对比编译后的汇编代码。</p>
+<p>以上是我对 C 语言中<code>switch-case</code>结构的一些理解。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/07/c-switch/" data-id="ciqoofvio000aq96c0156yn48" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/11/char-to-tchar/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          EasyX中的TCHAR转换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/29/2016-3-29/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">三月末</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

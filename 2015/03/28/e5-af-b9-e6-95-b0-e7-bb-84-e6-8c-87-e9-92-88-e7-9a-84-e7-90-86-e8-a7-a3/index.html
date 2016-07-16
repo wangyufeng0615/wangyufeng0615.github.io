@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>对“数组指针”的理解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文发表于2014-10-25
+&amp;nbsp;
+0.本来十分不解，不能理解形如
+int (*p)[100];这样的东西。
+&amp;nbsp;
+1.
+百度了一下，大概理解数组指针如果用来处理二维数组，指向的是每”行“的第零个元素的地址。
+比如有：
+int array[100];int (*p)[100];p = array;//第二行的100是个提示，提示你一行有100个元素那么有
+(p)  //array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对“数组指针”的理解">
+<meta property="og:url" content="http://yoursite.com/2015/03/28/e5-af-b9-e6-95-b0-e7-bb-84-e6-8c-87-e9-92-88-e7-9a-84-e7-90-86-e8-a7-a3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="原文发表于2014-10-25
+&amp;nbsp;
+0.本来十分不解，不能理解形如
+int (*p)[100];这样的东西。
+&amp;nbsp;
+1.
+百度了一下，大概理解数组指针如果用来处理二维数组，指向的是每”行“的第零个元素的地址。
+比如有：
+int array[100];int (*p)[100];p = array;//第二行的100是个提示，提示你一行有100个元素那么有
+(p)  //array">
+<meta property="og:updated_time" content="2015-07-27T08:02:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对“数组指针”的理解">
+<meta name="twitter:description" content="原文发表于2014-10-25
+&amp;nbsp;
+0.本来十分不解，不能理解形如
+int (*p)[100];这样的东西。
+&amp;nbsp;
+1.
+百度了一下，大概理解数组指针如果用来处理二维数组，指向的是每”行“的第零个元素的地址。
+比如有：
+int array[100];int (*p)[100];p = array;//第二行的100是个提示，提示你一行有100个元素那么有
+(p)  //array">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-e5-af-b9-e6-95-b0-e7-bb-84-e6-8c-87-e9-92-88-e7-9a-84-e7-90-86-e8-a7-a3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/28/e5-af-b9-e6-95-b0-e7-bb-84-e6-8c-87-e9-92-88-e7-9a-84-e7-90-86-e8-a7-a3/" class="article-date">
+  <time datetime="2015-03-28T07:18:03.000Z" itemprop="datePublished">2015-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/代码/">代码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      对“数组指针”的理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文发表于<span class="gray">2014-10-25</span></p>
+<p>&nbsp;</p>
+<p>0.本来十分不解，不能理解形如</p>
+<p><pre class="cpp">int (*p)[100];</pre><br><span style="font-family: Courier New; background-color: #f0f0f0;">这样的东西。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: Courier New; background-color: #f0f0f0;">1.</span></p>
+<p>百度了一下，大概理解数组指针如果用来处理二维数组，指向的是每”行“的第零个元素的地址。</p>
+<p>比如有：</p>
+<p><pre class="cpp">int array[100];<br>int (*p)[100];<br>p = array;<br>//第二行的100是个提示，提示你一行有100个元素</pre><br>那么有</p>
+<p><pre class="cpp"><em>(p)  //array[0]，即第零行第零个元素的地址
+</em>(p + i)  //array[i]<br><em>(p + i) + j    //array[i][j]的地址
+</em>(*(p + i) + j) //array[i][j]的值</pre><br>&nbsp;</p>
+<p>2.</p>
+<p>程序L11-1，功能是输入若干字符串，找出其中最长的一句</p>
+<p>原来用text[0]的实现：</p>
+<p><pre class="cpp">//L11-1</pre></p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>#include &lt;string.h&gt;</p>
+<p>int main()<br>{<br>    char text[100][100] = {0};<br>    printf(“输入一些文本：\n”);</p>
+<pre><code>//输入文本
+int i = 0;
+while(1)
+{
+    gets(text[i]);
+
+    if (0 == strlen(text[i]))
+    {
+        break;
+    }
+    i++;
+}
+
+//处理
+int j = 0;
+char* max = text[j];
+for (j = 0; j &amp;lt; i; j++)
+{
+    if ( strlen(max) &amp;lt; strlen(text[j+1]) )
+    {
+        max = text[j+1];
+    }
+}
+
+printf(&quot;最长的行是%s&quot;,max);
+
+return 0;
+</code></pre><p>}<br><br>改用数组指针后：</p>
+<p><pre class="cpp">//L11-1</pre></p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>#include &lt;string.h&gt;</p>
+<p>#include &lt;assert.h&gt;</p>
+<p>int main()<br>{<br>    char text[100][100] = {0};<br>    printf(“输入一些文本：\n”);</p>
+<pre><code>char (*p)[100];
+p = text;
+
+//输入文本
+int i = 0;
+while(1)
+{
+    gets(*(p+i));
+
+    if (!strlen(*(p+i)))
+    {
+        break;
+    }
+    i++;
+}
+
+//处理
+int j = 0;
+
+char * max = *p;
+//char (*max)[100] = text;
+
+for (j = 0; j &amp;lt; i; j++)
+{
+    if ( strlen(max) &amp;lt; strlen(*(p+j)) )
+    {
+        max = *(p+j);
+    }
+}
+
+printf(&quot;最长的行是%s&quot;,max);
+
+return 0;
+</code></pre><p>}<br><br>3.</p>
+<p>此程序中有等价关系：</p>
+<p><pre class="cpp">int text[20][100] = {0};</pre></p>
+<p>int <em> p = text[0];<br>//等价于<br>int (</em>p)[100] = text;  //赋值关系是p = text;<br>&nbsp;</p>
+<hr>
+<p>4.仍然有疑问：</p>
+<p>这种所谓“指向数组的指针”和普通的指向一维数组的普通指针有何区别？</p>
+<p><pre class="cpp">int array1[10] = {0};<br>int * p1 = array1;</pre></p>
+<p>int array2[10][10] = {0};<br>int (*p2)[10] = array2;</p>
+<p>//这有区别？=.=<br>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/28/e5-af-b9-e6-95-b0-e7-bb-84-e6-8c-87-e9-92-88-e7-9a-84-e7-90-86-e8-a7-a3/" data-id="ciqoofvj7000mq96cpyqr5dby" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/28/e5-b0-86c-e8-af-ad-e8-af-be-e8-ae-be-e4-bc-a0-e5-88-b0-e4-ba-86github-e5-92-8ccode-e4-b8-8a/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          将C语课设传到了Github和Code上
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/28/e8-b0-a2-e5-b0-94-e5-ae-be-e6-96-af-e5-9f-ba-e4-b8-89-e8-a7-92-e5-bd-a2-ef-bc-8c-e6-b7-b7-e6-b2-8c-e6-b8-b8-e6-88-8f-e5-ae-9e-e7-8e-b0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">谢尔宾斯基三角形，“混沌游戏”实现</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

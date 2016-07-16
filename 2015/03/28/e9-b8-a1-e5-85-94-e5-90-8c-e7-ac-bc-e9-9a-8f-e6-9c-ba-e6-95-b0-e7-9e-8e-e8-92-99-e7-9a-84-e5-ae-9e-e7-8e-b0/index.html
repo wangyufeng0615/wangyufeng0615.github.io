@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>鸡兔同笼随机数瞎蒙的实现 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文发表于2014-10-08
+&amp;nbsp;
+今天C语小测验，这个思路还被老师批判了一番=.=
+&amp;nbsp;
+产生一个疑问：这个程序我循环10W次，如果在CMD里把每次循环的结果都显示出来，就得大约用半分钟的时间。如果我不printf每次的结果，大概3秒钟就能出最后的答案。
+&amp;nbsp;
+是CMD里的刷新速度有限制吗？有啥办法能既显示数据又能充分利用CPU的能力？
+&amp;nbsp;
+#include">
+<meta property="og:type" content="article">
+<meta property="og:title" content="鸡兔同笼随机数瞎蒙的实现">
+<meta property="og:url" content="http://yoursite.com/2015/03/28/e9-b8-a1-e5-85-94-e5-90-8c-e7-ac-bc-e9-9a-8f-e6-9c-ba-e6-95-b0-e7-9e-8e-e8-92-99-e7-9a-84-e5-ae-9e-e7-8e-b0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="原文发表于2014-10-08
+&amp;nbsp;
+今天C语小测验，这个思路还被老师批判了一番=.=
+&amp;nbsp;
+产生一个疑问：这个程序我循环10W次，如果在CMD里把每次循环的结果都显示出来，就得大约用半分钟的时间。如果我不printf每次的结果，大概3秒钟就能出最后的答案。
+&amp;nbsp;
+是CMD里的刷新速度有限制吗？有啥办法能既显示数据又能充分利用CPU的能力？
+&amp;nbsp;
+#include">
+<meta property="og:updated_time" content="2015-07-27T08:02:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="鸡兔同笼随机数瞎蒙的实现">
+<meta name="twitter:description" content="原文发表于2014-10-08
+&amp;nbsp;
+今天C语小测验，这个思路还被老师批判了一番=.=
+&amp;nbsp;
+产生一个疑问：这个程序我循环10W次，如果在CMD里把每次循环的结果都显示出来，就得大约用半分钟的时间。如果我不printf每次的结果，大概3秒钟就能出最后的答案。
+&amp;nbsp;
+是CMD里的刷新速度有限制吗？有啥办法能既显示数据又能充分利用CPU的能力？
+&amp;nbsp;
+#include">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-e9-b8-a1-e5-85-94-e5-90-8c-e7-ac-bc-e9-9a-8f-e6-9c-ba-e6-95-b0-e7-9e-8e-e8-92-99-e7-9a-84-e5-ae-9e-e7-8e-b0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/28/e9-b8-a1-e5-85-94-e5-90-8c-e7-ac-bc-e9-9a-8f-e6-9c-ba-e6-95-b0-e7-9e-8e-e8-92-99-e7-9a-84-e5-ae-9e-e7-8e-b0/" class="article-date">
+  <time datetime="2015-03-28T07:14:14.000Z" itemprop="datePublished">2015-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/代码/">代码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      鸡兔同笼随机数瞎蒙的实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文发表于<span class="gray">2014-10-08</span></p>
+<p>&nbsp;</p>
+<p>今天C语小测验，这个思路还被老师批判了一番=.=</p>
+<p>&nbsp;</p>
+<p>产生一个疑问：这个程序我循环10W次，如果在CMD里把每次循环的结果都显示出来，就得大约用半分钟的时间。如果我不printf每次的结果，大概3秒钟就能出最后的答案。</p>
+<p>&nbsp;</p>
+<p>是CMD里的刷新速度有限制吗？有啥办法能既显示数据又能充分利用CPU的能力？</p>
+<p>&nbsp;</p>
+<pre class="cpp">#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+//实验多少次
+#define TIME 100000
+//是否显示每次试验的数据
+#define ECHO 0
+
+void calculate_average(int*, int, int*);
+
+int main()
+{
+    int rabbit, chick;
+    int i; //每次试验蒙的次数
+    int* count = malloc(sizeof(int)*TIME); //count指针
+    int times = 0; //试验的总次数
+    int* count_first = count; //记录count的最初地址
+
+    srand((unsigned)time(NULL));
+
+    while(1)
+    {
+        rabbit = rand()%36;
+        chick = rand()%36;
+        i++;
+
+        if (35 == rabbit + chick &amp;&amp; 94 == rabbit * 2 + chick * 4)
+        {
+                if (1 == ECHO)
+                {
+                    printf("%-4d次瞎蒙，得出兔子有%d个，鸡有%d枚，程序走了%d次\n",i,rabbit,chick,times);
+                }
+
+                *count = i; //把当前试验的次数保存到count
+                count++;
+                times++;
+                i = 0;
+                    while (TIME == times)
+                    {
+                        goto break_all; //跳出大循环
+                    }
+        }
+    }
+    break_all:
+
+    calculate_average(count, times, count_first);
+
+    return 0;
+}
+
+void calculate_average(int * count, int times, int* count_first)
+{
+    int sum = 0;
+    int j;
+
+    for (j = 0; j &lt; times; j++)
+    {
+        sum += *count_first;
+        count_first++;
+    }
+    printf("经过了%d试验,每次平均瞎蒙了%5d次\n",times,sum/times);
+}
+</pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/28/e9-b8-a1-e5-85-94-e5-90-8c-e7-ac-bc-e9-9a-8f-e6-9c-ba-e6-95-b0-e7-9e-8e-e8-92-99-e7-9a-84-e5-ae-9e-e7-8e-b0/" data-id="ciqoofvjm000uq96cvczegdu4" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/28/e8-b0-a2-e5-b0-94-e5-ae-be-e6-96-af-e5-9f-ba-e4-b8-89-e8-a7-92-e5-bd-a2-ef-bc-8c-e6-b7-b7-e6-b2-8c-e6-b8-b8-e6-88-8f-e5-ae-9e-e7-8e-b0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          谢尔宾斯基三角形，“混沌游戏”实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/28/e8-af-b4-e5-88-b0-e5-85-b3-e4-ba-8e-e8-bf-b7-e5-ae-ab-e8-af-be-e8-ae-be/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">说到关于迷宫课设</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

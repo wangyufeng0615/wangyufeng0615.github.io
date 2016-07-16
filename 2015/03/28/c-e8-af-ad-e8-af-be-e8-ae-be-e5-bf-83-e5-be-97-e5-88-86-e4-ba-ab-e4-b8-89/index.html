@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C语课设心得分享(三) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="调试。
+以前咱们写课后习题，一般也不需要使用调试，如果程序编译error，根据错误信息就可以改好；如果是结果错误，那么在稿纸上过几遍基本也可以得出结果。 但咱们这个课设比较大，就需要很多调试的过程，尤其是在链表/开关变量的调试上。其实我对调试也不是很了解，但我跟大家分享一些我所接触到的调试方式。
+F10和F11是非常常用的，两者的区别是F11是单步调试，但是会进入到子函数中。F10的话也是单步，但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语课设心得分享(三)">
+<meta property="og:url" content="http://yoursite.com/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="调试。
+以前咱们写课后习题，一般也不需要使用调试，如果程序编译error，根据错误信息就可以改好；如果是结果错误，那么在稿纸上过几遍基本也可以得出结果。 但咱们这个课设比较大，就需要很多调试的过程，尤其是在链表/开关变量的调试上。其实我对调试也不是很了解，但我跟大家分享一些我所接触到的调试方式。
+F10和F11是非常常用的，两者的区别是F11是单步调试，但是会进入到子函数中。F10的话也是单步，但">
+<meta property="og:updated_time" content="2015-07-27T08:02:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语课设心得分享(三)">
+<meta name="twitter:description" content="调试。
+以前咱们写课后习题，一般也不需要使用调试，如果程序编译error，根据错误信息就可以改好；如果是结果错误，那么在稿纸上过几遍基本也可以得出结果。 但咱们这个课设比较大，就需要很多调试的过程，尤其是在链表/开关变量的调试上。其实我对调试也不是很了解，但我跟大家分享一些我所接触到的调试方式。
+F10和F11是非常常用的，两者的区别是F11是单步调试，但是会进入到子函数中。F10的话也是单步，但">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-89" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-89/" class="article-date">
+  <time datetime="2015-03-28T07:23:07.000Z" itemprop="datePublished">2015-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/代码/">代码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语课设心得分享(三)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>调试。</p>
+<p>以前咱们写课后习题，一般也不需要使用调试，如果程序编译error，根据错误信息就可以改好；如果是结果错误，那么在稿纸上过几遍基本也可以得出结果。 但咱们这个课设比较大，就需要很多调试的过程，尤其是在链表/开关变量的调试上。其实我对调试也不是很了解，但我跟大家分享一些我所接触到的调试方式。</p>
+<p>F10和F11是非常常用的，两者的区别是F11是单步调试，但是会进入到子函数中。F10的话也是单步，但是会跳过模块。感觉平时用F10更多一些。在 用单步调试时，监测变量的窗口可以智能显示出你可能要看的变量的值，相当方便。比如咱们可以用单步调试的功能，看看程序的流程是怎么走的，这样可以看出很 多问题，比如程序的条件判断、分支流程是不是走错了。</p>
+<p>说到变量监测，也可以手动添加你想看的变量，甚至是表达式的值。可能需要手动添加，很方便，大家自己看一看。</p>
+<p>但是咱们的课设有个很大的障碍，就是在EasyX编出来的窗口运行时，似乎是不能同时调试的，如果想调试，就得把运行中断，或者说暂停；还有一个问题，就 是如果程序写了很长，但咱们只需要在一个小部分中单步调试，总不能从头单步调试吧？或者有一个循环循环了几百次，但用单步调试的话就得按好几百次按键。所 以咱们经常需要使用断点这个功能。在代码的行数左侧的空白处单击一下，就可以添加一个红色的实心圆，这就代表添加了一个断点。在调试模式下，程序运行到断 点时就会暂停。这时候就可以比较方便的看变量的值，按需做出调整。举个例子，咱们在需要仔细单步调试的部分之前添加一个断点，想办法让程序运行到断点，程 序会暂停，然后就可以用F10一步一步的走。</p>
+<p>咱们一般是用F7进行编译，Ctrl+F5运行，而F5就是调试。断点的话也有快捷键，但一般用鼠标来点就够用了。</p>
+<p>条件断点也是个很不错的功能，可以有条件地中断程序。其实C语言中还有个很好用的断言功能，但我也没怎么用过，暂且按下不表。断言功能举个例子，比如我有 个变量，flag_status，如果是1就运行程序，0是暂停程序。那咱们可以在某处添加一个断点，断点的条件是”1 == flag_status”，那就只有在程序在运行状态时才会执行这个断点。这个用处还是挺多的，可以节省很多调试的时间或者脑力。</p>
+<p>其实咱们这个课设的弹性是很大的，我个人的感受是，有些微小的BUG改起来是极为耗费时间和脑力的，有些BUG越改问题越多，但改完以后，很可能都不会被 看你程序的人注意得到。所以很多调试工作在我看来都是一个对自己负责的工作，而不是对老师，或者是对最后的分数负责的工作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-89/" data-id="ciqoofvii0007q96czy5u6o7d" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/28/e3-80-8a-e5-a6-82-e4-bd-95-e5-8f-98-e5-be-97-e6-9c-89-e6-80-9d-e6-83-b3-e3-80-8b-e6-91-98-e6-8a-84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          《如何变得有思想》摘抄
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">C语课设心得分享(二)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

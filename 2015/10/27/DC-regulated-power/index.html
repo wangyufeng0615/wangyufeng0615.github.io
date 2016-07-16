@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>直流稳压电源(电路实验1)笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="电子实验的第一个实验，「直流稳压电源」。由于实验小册子上的图和文字实在是太抽象、太魔性了，我把我对这个电路的一些认识写在这里，供参考。如果写错了内容并对你的电路(和心理)造成了不可逆转的伤害，我请你吃冰棍。
+另外，我的器件包里没有任何电阻，但 @辛德龙 就有俩氪金彩色电阻，大家都有电阻吗？
+#认识元器件
+元件和器件是有区别的。在我看来，电阻、电容这类比较基础的东西就是「元件」，差分放大器、集成电路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="直流稳压电源(电路实验1)笔记">
+<meta property="og:url" content="http://yoursite.com/2015/10/27/DC-regulated-power/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="电子实验的第一个实验，「直流稳压电源」。由于实验小册子上的图和文字实在是太抽象、太魔性了，我把我对这个电路的一些认识写在这里，供参考。如果写错了内容并对你的电路(和心理)造成了不可逆转的伤害，我请你吃冰棍。
+另外，我的器件包里没有任何电阻，但 @辛德龙 就有俩氪金彩色电阻，大家都有电阻吗？
+#认识元器件
+元件和器件是有区别的。在我看来，电阻、电容这类比较基础的东西就是「元件」，差分放大器、集成电路">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/82966437.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/62548616.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/26675224.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/24418714.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/46572702.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/73668153.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/16602044.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/26540379.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/76078863.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/30867599.jpg">
+<meta property="og:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/43741313.jpg">
+<meta property="og:updated_time" content="2015-10-27T10:48:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="直流稳压电源(电路实验1)笔记">
+<meta name="twitter:description" content="电子实验的第一个实验，「直流稳压电源」。由于实验小册子上的图和文字实在是太抽象、太魔性了，我把我对这个电路的一些认识写在这里，供参考。如果写错了内容并对你的电路(和心理)造成了不可逆转的伤害，我请你吃冰棍。
+另外，我的器件包里没有任何电阻，但 @辛德龙 就有俩氪金彩色电阻，大家都有电阻吗？
+#认识元器件
+元件和器件是有区别的。在我看来，电阻、电容这类比较基础的东西就是「元件」，差分放大器、集成电路">
+<meta name="twitter:image" content="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/82966437.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DC-regulated-power" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/27/DC-regulated-power/" class="article-date">
+  <time datetime="2015-10-27T09:38:05.000Z" itemprop="datePublished">2015-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      直流稳压电源(电路实验1)笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>电子实验的第一个实验，「直流稳压电源」。由于实验小册子上的图和文字实在是太抽象、太魔性了，我把我对这个电路的一些认识写在这里，供参考。如果写错了内容并对你的电路(和心理)造成了不可逆转的伤害，我请你吃冰棍。</p>
+<p>另外，我的器件包里没有任何<strong>电阻</strong>，但 @辛德龙 就有俩氪金彩色电阻，大家都有电阻吗？</p>
+<p>#认识元器件</p>
+<p>元件和器件是有区别的。在我看来，电阻、电容这类比较基础的东西就是「元件」，差分放大器、集成电路的话就算「器件」</p>
+<p>##电解电容（大）<br><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/82966437.jpg" alt=""></p>
+<p>1000μF</p>
+<p>和整流桥并联。</p>
+<p>给转换出的直流电做滤波(?)和稳压(?)用的，总之是个缓冲作用。这个电路上大多数的电容都是缓冲作用。</p>
+<p><strong>听说这个电容接反的话会爆炸。</strong>，有白条的一侧就是负极。同时，引脚长的一侧为正极。</p>
+<p>这个黑色电解电容，从包装来看是Rubycon牌子的，我上网查了一下，怀疑是假货。</p>
+<p>##电解电容（小）</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/62548616.jpg" alt=""></p>
+<p>数量若干。</p>
+<p>##陶瓷电容</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/26675224.jpg" alt=""></p>
+<p>这种电容不用分正负。听说也不会爆炸？</p>
+<p>##整流桥</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/24418714.jpg" alt=""></p>
+<p>能将交流电转为（<em>不那么平整的</em>）直流电。大约是1V交流电（有效值）能转为1.2V直流电。</p>
+<p>看印刷，<strong>两个「~」接交流电，「+」和「-」就是直流输出</strong>。</p>
+<p>其实就是小册子上的这玩意：</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/46572702.jpg" alt=""></p>
+<p>因为这个整流桥的内部就是封装了4个二极管。</p>
+<p>##二极管</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/73668153.jpg" alt=""></p>
+<p>型号：1N4007</p>
+<p><strong>有白环的一侧为负极</strong>。在咱们这个电路中，接在7805的1，3引脚之间，保护用。引脚3接二极管正极。</p>
+<p>##稳压器</p>
+<p>型号可能是「LM7805」</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/16602044.jpg" alt=""></p>
+<p>从印刷字的一侧看，<strong>左起为引脚1，2，3</strong>。1接正极，3接输出，2接地。</p>
+<p>由于经过整流桥整流过的直流电，还不是很平整（参考上面整流桥的波形图），这个7805就是撸平电流用的，作用类似电熨斗。</p>
+<p>这个7805稳压器能稳定输出5V直流电源，输入的话一般在7-10V。那这几V的电去哪了？被这个器件变成热量了。上面的那个孔，就是接散热片用的。不过咱们这个电路电流不大，我估计不需要散热片。</p>
+<p>##功率放大器</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/26540379.jpg" alt=""></p>
+<blockquote>
+<p>图：百度图片</p>
+</blockquote>
+<p>其实已经不是「直流稳压」部分的功能了。估计是为了驱动喇叭。</p>
+<p>咱们给的是「386D」，和「LM386」的原理基本一样，应该是生产的厂商不一样。</p>
+<p>有圆形凹陷的那个角，是引脚1（所有器件都这样）。引脚图：</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/76078863.jpg" alt=""></p>
+<blockquote>
+<p>图：JRC的器件手册</p>
+</blockquote>
+<ul>
+<li>引脚1，8：接一个电容，调节用</li>
+<li>引脚2：反相输入（信号源）</li>
+<li>引脚3：正相输入（信号源）</li>
+<li>引脚4：接地</li>
+<li>引脚5：输出信号</li>
+<li>引脚6：电源（在咱们这个实验中就是7805给的5V直流）</li>
+<li>引脚7：旁路（接一个电容，电容再接地。好像是对输出信号的稳定有好处）（去耦?）</li>
+</ul>
+<p>反相和正相输入，大概就是咱们电路课正在学的功率放大器吧。</p>
+<p>##管脚座(?)</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/30867599.jpg" alt=""></p>
+<p>386一定要插在管脚座上，将管脚座焊接在电路板上。我不确定是不是叫「管脚座」这个名字。</p>
+<p>建议7805也接在座上，毕竟听说<em>电烙铁可能会焊坏器件（给的热量太多）</em></p>
+<p>#电路图</p>
+<p>小册子上的图太魔性了简直。</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-10-27/43741313.jpg" alt=""></p>
+<p>感谢 @曾檬 @孙昀淏 分享图片，拯救我于水火之中。此图建议大家存好，你懂得。</p>
+<p>#总之<br>想搞一个8Ω小喇叭，没搞来。</p>
+<p>焊锡就给那么点，器件焊坏了还不给分，这真的是实验课？这让人怎么练手？非得让人缩手缩脚？一个器件有几块钱？我出钱买还不行吗？焊坏一个器件就不给分？</p>
+<p>##接地是啥意思？</p>
+<p>我理解接地，就是接「低电平」的意思，在咱们这个电路中，唯一可行的低电平就是电源负极。也就是说接地就是接电源负极的意思。</p>
+<p>没必要接大地。</p>
+<p>##一些笔记</p>
+<ul>
+<li>防止输入对地短路</li>
+<li>防止输入输出接反</li>
+<li>防止输入滤波电路短路（大概会爆炸？）</li>
+<li>防止输出与高电平接（大概会烧坏器件）</li>
+<li>防止三 - 地 - 开路 （原文如此，我也忘了记的是啥意思了，求解）</li>
+</ul>
+<p>##总之</p>
+<p>这个电路：</p>
+<ol>
+<li>将交流电，用整流桥（扁平圆柱，四脚），变成不平整的直流电</li>
+<li>将不平整的直流电，用稳压器（7805，三脚），变成平滑的5V直流电</li>
+<li>用5V的直流电驱动功放（386D，八脚）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/27/DC-regulated-power/" data-id="ciqoofvix000fq96ce2sl4wwh" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xu/">xu</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/23/cpp-keypoint/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          C++考试重点解析 | 七系
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/26/programming-language/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">都有啥编程语言？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

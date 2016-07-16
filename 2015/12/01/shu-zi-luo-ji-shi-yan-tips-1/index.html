@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数字逻辑实验，如何使用键盘 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开关（SW1-SW16）自然也可以作为输入，但有些情况更适合用键盘输入，比如密码锁，模拟投币等。
+键盘就是试验箱右下角，0-F的圆形按钮。
+在做这次实验之前，我原以为键盘的输入方式和开关类似，即按下为1，松开为0，但实际上不是这样。如果想使用键盘，还需要专门写一段「键盘扫描程序」。
+程序在实验书P48页有写，这里解释一下：
+
+1234input [7:0] RL;...output KB;reg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字逻辑实验，如何使用键盘">
+<meta property="og:url" content="http://yoursite.com/2015/12/01/shu-zi-luo-ji-shi-yan-tips-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="开关（SW1-SW16）自然也可以作为输入，但有些情况更适合用键盘输入，比如密码锁，模拟投币等。
+键盘就是试验箱右下角，0-F的圆形按钮。
+在做这次实验之前，我原以为键盘的输入方式和开关类似，即按下为1，松开为0，但实际上不是这样。如果想使用键盘，还需要专门写一段「键盘扫描程序」。
+程序在实验书P48页有写，这里解释一下：
+
+1234input [7:0] RL;...output KB;reg">
+<meta property="og:updated_time" content="2015-12-01T11:33:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数字逻辑实验，如何使用键盘">
+<meta name="twitter:description" content="开关（SW1-SW16）自然也可以作为输入，但有些情况更适合用键盘输入，比如密码锁，模拟投币等。
+键盘就是试验箱右下角，0-F的圆形按钮。
+在做这次实验之前，我原以为键盘的输入方式和开关类似，即按下为1，松开为0，但实际上不是这样。如果想使用键盘，还需要专门写一段「键盘扫描程序」。
+程序在实验书P48页有写，这里解释一下：
+
+1234input [7:0] RL;...output KB;reg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-shu-zi-luo-ji-shi-yan-tips-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/01/shu-zi-luo-ji-shi-yan-tips-1/" class="article-date">
+  <time datetime="2015-12-01T10:43:56.000Z" itemprop="datePublished">2015-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数字逻辑实验，如何使用键盘
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>开关（SW1-SW16）自然也可以作为输入，但有些情况更适合用键盘输入，比如密码锁，模拟投币等。</p>
+<p>键盘就是试验箱右下角，0-F的圆形按钮。</p>
+<p>在做这次实验之前，我原以为键盘的输入方式和开关类似，即按下为1，松开为0，但实际上不是这样。如果想使用键盘，还需要专门写一段「键盘扫描程序」。</p>
+<p>程序在实验书P48页有写，这里解释一下：</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">input [7:0] RL;</div><div class="line">...</div><div class="line">output KB;</div><div class="line">reg KB;</div></pre></td></tr></table></figure>
+<p>RL对应键盘的「列」，从左到右，是第0列到第7列。</p>
+<p>KB对应键盘的「行」，当KB为<code>0</code>时，键盘下面一行可用，即0-7.</p>
+<p>当KB为<code>1</code>时，上面一行可用，即8-F.</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">always @ (posedge clk) begin</div><div class="line">	q = 1&apos;b0;</div><div class="line">    q = KB;</div><div class="line">    KB = ~q;</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>这段代码是为了以时钟频率反复扫描上下两行，所以时钟不要选太慢的，比如选8Hz就挺合适。</p>
+<hr>
+<p>RL[7]到RL[0]就是列输入，这些需要自行连线。比如从实验板上，将<code>KP_RL7</code>（在键盘上方）连了pin138，那引脚分配的时候，就将138分配给RL[7].请注意，书上的<code>input [7:0] RL</code>这个名字和实验板上的KP_RL0至KP_RL7类似，不要混淆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">always @ (posedge clk) begin</div><div class="line">	case (&#123;KB,RL&#125;)</div><div class="line">        9&apos;b011111110:	//当按下「0」的时候要做的事</div><div class="line">        9&apos;b011111101:	//当按下「1」的时候要干的事</div><div class="line">        ...</div><div class="line">        9&apos;b111111110:	//当按下「8」的时候要干的事</div><div class="line">        ...</div><div class="line">        ...</div><div class="line">        default:		//什么按键也没按下</div><div class="line">    endcase</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>这里的<code>{}</code>是用来将两个数拼接在一起。</p>
+<p>KB就表示行，KB为0的话就是下面一行有效。这些键盘是负有效，按下的时候变0，抬起的时候是1.</p>
+<hr>
+<p>实验板上的接线方式，这里给一个参考</p>
+<p>从<code>KP_RL0</code>到<code>KP_RL7</code>，可连接pin166, 164 162 160 158 143 140 138。当然了，连哪个引脚都可以。</p>
+<p><code>KP_RL0/7</code>旁边的<code>KP SL0</code>中，<code>KB1</code>和<code>KB2</code>接地，连接到实验板上任意写有<code>GND</code>的引脚即可。</p>
+<p><code>KB0</code>需要连接到一个你自定义的引脚上（比如163），然后再引脚分配环节，将pin163分配给<code>KB</code>就可以了。</p>
+<hr>
+<p>如果你的电路设计，只需要用一行键盘，那就不需要写KB的0-1转换了。但是仍然要分配KB0，确保KB0恒为0（或恒为1即，用上边一行。）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/01/shu-zi-luo-ji-shi-yan-tips-1/" data-id="ciqoofwjx002dq96c9j22m75p" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/31/my-2015/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          2015朝饼夕拾
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/23/cpp-keypoint/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">C++考试重点解析 | 七系</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

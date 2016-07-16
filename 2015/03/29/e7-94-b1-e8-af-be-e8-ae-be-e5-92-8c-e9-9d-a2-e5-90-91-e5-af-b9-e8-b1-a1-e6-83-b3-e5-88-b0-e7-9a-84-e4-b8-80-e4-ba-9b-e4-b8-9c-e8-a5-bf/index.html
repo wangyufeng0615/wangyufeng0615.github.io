@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>由课设和面向对象想到的一些东西 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前些天草草的把Java课本（学校老师自编课本）浏览了一遍，最近正在看《Java核心技术》，感觉书有点儿难度。正在努力理解接口和异常。
+我刚接触编程时，就已经听说了“面向对象编程”这个概念，但完全不能理解。百度相关信息，只能得到一些“哲学答案”，比如“万物皆对象”等等。我问学长学姐，他们给我的答案也都模棱两可。现在学完C语言后，终于能初步感受到面向对象的思想了。所以我的感受是，有些不懂的东西不需要太">
+<meta property="og:type" content="article">
+<meta property="og:title" content="由课设和面向对象想到的一些东西">
+<meta property="og:url" content="http://yoursite.com/2015/03/29/e7-94-b1-e8-af-be-e8-ae-be-e5-92-8c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e6-83-b3-e5-88-b0-e7-9a-84-e4-b8-80-e4-ba-9b-e4-b8-9c-e8-a5-bf/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前些天草草的把Java课本（学校老师自编课本）浏览了一遍，最近正在看《Java核心技术》，感觉书有点儿难度。正在努力理解接口和异常。
+我刚接触编程时，就已经听说了“面向对象编程”这个概念，但完全不能理解。百度相关信息，只能得到一些“哲学答案”，比如“万物皆对象”等等。我问学长学姐，他们给我的答案也都模棱两可。现在学完C语言后，终于能初步感受到面向对象的思想了。所以我的感受是，有些不懂的东西不需要太">
+<meta property="og:image" content="http://wangyufeng.org/wp-content/uploads/2015/03/git-branch-203x300.png">
+<meta property="og:updated_time" content="2015-07-27T08:02:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="由课设和面向对象想到的一些东西">
+<meta name="twitter:description" content="前些天草草的把Java课本（学校老师自编课本）浏览了一遍，最近正在看《Java核心技术》，感觉书有点儿难度。正在努力理解接口和异常。
+我刚接触编程时，就已经听说了“面向对象编程”这个概念，但完全不能理解。百度相关信息，只能得到一些“哲学答案”，比如“万物皆对象”等等。我问学长学姐，他们给我的答案也都模棱两可。现在学完C语言后，终于能初步感受到面向对象的思想了。所以我的感受是，有些不懂的东西不需要太">
+<meta name="twitter:image" content="http://wangyufeng.org/wp-content/uploads/2015/03/git-branch-203x300.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-e7-94-b1-e8-af-be-e8-ae-be-e5-92-8c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e6-83-b3-e5-88-b0-e7-9a-84-e4-b8-80-e4-ba-9b-e4-b8-9c-e8-a5-bf" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/29/e7-94-b1-e8-af-be-e8-ae-be-e5-92-8c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e6-83-b3-e5-88-b0-e7-9a-84-e4-b8-80-e4-ba-9b-e4-b8-9c-e8-a5-bf/" class="article-date">
+  <time datetime="2015-03-29T00:49:58.000Z" itemprop="datePublished">2015-03-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/学习/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      由课设和面向对象想到的一些东西
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前些天草草的把Java课本（学校老师自编课本）浏览了一遍，最近正在看《Java核心技术》，感觉书有点儿难度。正在努力理解接口和异常。</p>
+<p>我刚接触编程时，就已经听说了“面向对象编程”这个概念，但完全不能理解。百度相关信息，只能得到一些“哲学答案”，比如“万物皆对象”等等。我问学长学姐，他们给我的答案也都模棱两可。现在学完C语言后，终于能初步感受到面向对象的思想了。所以我的感受是，有些不懂的东西不需要太着急，可能是自己还没有学会基础的东西，学着学着慢慢就懂了。同时我也觉得C语言入门虽然难且艰辛，但对计算机专业的学生来说还是很重要的。</p>
+<p>上学期末，我在做C语言的课设时（小球移动），就萌生了一些面向对象的想法。当时我把一个个的球封装为结构体，我就想如果能把球的各种功能（删除、运动、选择）也和球绑定在一起，那多方便啊，明明是一体的东西，却要拆成不同的模块。后来一学Java，突然觉得用C语言写那个课设真的是挺不科学的，用面向对象估计能省很多力。</p>
+<p>估计跟我们专业的历史也有关系，听说数年前，C语言上两个学期，大二开始才学面向对象语言（C++或Java），那大一下学期时若想做课设也只能用C语言。我们的课设用的图形库是EasyX，是TC里的graphics.h移植到windows上的。开发者是个非常热心的人，经常在QQ群里回答大家的问题（不乏许多日经问题）。我将我的作品投稿到他的网站时，他也以非常谦逊的态度精准地指出了一些程序中存在的问题，并给了我许多修改建议。我正是在他的建议下，才第一次捣鼓出了计时功能（time.h），否则我会因偷懒而失去这一实践的机会，我很感谢他。</p>
+<p>这次我的课设大概从v0.5开始便用上了github，很多功能还不太会用，有时候分支还会弄错（出现一些奇怪的效果，比如远程pull以后我刚修改的东西没了之类的），但总体上还是感受到了git的便利，我为能早日用上代表先进生产力的工具还是挺高兴的。现在我在桌子的前面贴了张Git分支图，平时没事儿多看看。</p>
+<p><a href="http://wangyufeng.org/wp-content/uploads/2015/03/git-branch.png" target="_blank" rel="external"><img src="http://wangyufeng.org/wp-content/uploads/2015/03/git-branch-203x300.png" alt="git分支"></a>欢迎各位同学来fork我=。=我突发奇想，Github完全可以做一种education模式，给每个班级搭建平台，不管是提交作业还是教师反馈都会很方便，还可以让同学们锻炼团队编程的能力。</p>
+<p>这学期专业课只剩下一门Java，那么我是时候该直视一下高数II，大雾和四级的考验了…</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/29/e7-94-b1-e8-af-be-e8-ae-be-e5-92-8c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e6-83-b3-e5-88-b0-e7-9a-84-e4-b8-80-e4-ba-9b-e4-b8-9c-e8-a5-bf/" data-id="ciqoofvjb000oq96cjqk7k1ei" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/30/e4-b9-8c-e9-b8-a6-e8-b5-b0-e4-ba-86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          乌鸦走了
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/28/e5-b0-9d-e8-af-95-e8-87-aa-e5-b7-b1-e6-90-ad-e4-b8-80-e4-b8-aa-e5-8d-9a-e5-ae-a2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">尝试自己搭一个博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
