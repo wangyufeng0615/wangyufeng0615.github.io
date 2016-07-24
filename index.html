@@ -248,6 +248,145 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/24/工大野生助手/" itemprop="url">
+                  工大野生助手
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-24T12:48:29+08:00" content="2016-07-24">
+              2016-07-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#工大野生助手</p>
+<p>##访问量</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/16-7-16/85684382.jpg" alt=""></p>
+<p>##预览</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/16-7-23/12366574.jpg" alt=""><br><img src="http://7xku3h.com1.z0.glb.clouddn.com/16-7-23/47965690.jpg" alt=""></p>
+<p>##功能</p>
+<ul>
+<li>查某学期的各科成绩。</li>
+<li>查所有学期总的加权平均分和平均GPA。</li>
+</ul>
+<p>##运行模式</p>
+<ul>
+<li>这两个PHP页面运行在Apache中；</li>
+<li>Apache安装在我的电脑上；</li>
+<li>电脑连了学校的内网，也就是bjut-wifi或者插网线；</li>
+<li>将自己电脑的80端口映射到外网。映射的方法很多，我用的是ngrok这个开源工具，也可以用花生壳等。</li>
+<li>【手机端(扫二维码访问登陆页面)】&lt;—&gt;【外网映射服务器】&lt;–(学校网关)–&gt;【内网电脑,运行着Apache】&lt;—&gt;【教务网站】</li>
+</ul>
+<p>##细节</p>
+<ul>
+<li><code>login_grade.php</code>负责登陆，<code>require_grade.php</code>负责具体的查询。</li>
+</ul>
+<p>###login_grade.php</p>
+<ul>
+<li>UI用的是「WeUI」，微信团队做的，和微信的视觉效果一致；</li>
+<li>每个学校的正方教务都不太一样，我的代码中的各种http header参数、post参数基本符合北工大的教务网站。</li>
+<li>教务系统的默认登陆页面是<code>default2</code>，可以换换default后面的数字，可以有不需要验证码的登陆页面。</li>
+</ul>
+<p>###require_grade.php</p>
+<ul>
+<li>中文编码容易出现乱码，涉及到本地IDE的编码、PHP的编码和网站的编码；</li>
+<li>有两种post，第一种是登陆，第二种是获取成绩信息。获取成绩信息的时候有多次post，分别是获取某学期的成绩和获取总成绩；</li>
+<li>构造POST的思路：打开浏览器开发者工具，先正常走一遍查询成绩的流程，观察POST数据的key和value，并在代码中构造；</li>
+<li>由于页面返回的是一坨DIV，而且既没有name属性也没有id属性，所以需要将table标签整个转成array，并观察所需要的信息的位置，通过数组下标的方式访问；</li>
+<li>总的平均GPA无法区分主修专业和二专业/辅修专业，因为查询所有科目的总成绩页面中没有任何标签能区分这两者。</li>
+</ul>
+<p>##其他</p>
+<ul>
+<li>其实就是个爬虫，模拟了登陆正方教务系统并查询成绩的过程。Python写爬虫的话可能更方便，Python有个库requests，非常好用。</li>
+<li>PHP中嵌入HTML感觉很不优雅，但HTML中嵌入PHP也好不到哪里去，有什么更好的办法吗？</li>
+<li>网上有很多关于正方教务的东西，虽然不太容易直接照搬，但学习价值很大。table转html的函数我就是从网上找的。</li>
+<li>交流请联系 807103724@qq.com，微信同QQ。</li>
+<li>欢迎提交Issue和Pull Request！</li>
+</ul>
+<p>##LICENSE(假装我写出了一个开源的东西)</p>
+<p>MIT</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/14/mhn-install/" itemprop="url">
                   安装大型Linux软件时一些关于下载的坑
                 </a>
@@ -1483,111 +1622,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/08/alpha-go/" itemprop="url">
-                  AlphaGo vs. 李世石，见证历史
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-08T19:55:48+08:00" content="2016-03-08">
-              2016-03-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>明天（3月9日），「人机大战」就要来了。围棋人工智能 AlphaGo 和世界冠军李世石的第一场比赛将于明天打响。网上有多家媒体进行直播，大家不妨关注。</p>
-<p>小时候，我只是隐约听说过卡斯帕罗夫和「深蓝」的那场世纪大战，但却没有什么感受，只是知道「哦，人工智能很厉害，赢了象棋大师」。随着年龄的累加和计算机专业的学习，愈发觉得1997年那场比赛的分量之厚重。1996年，卡斯帕罗夫对垒「深蓝」，以4：2赢得了首战；1997年的重赛中，卡斯帕罗夫以2.5:3.5落败。这次重赛的意义我难以详述，大家如果感兴趣，不妨在网上浏览一下。有意思的是，「深蓝」的设计师叫徐峰雄，和 Facebook 的围棋人工智能一样，设计师都是华人。</p>
-<p>我的QQ网名也叫「深蓝」，有人问过我，这名字是不是指这台计算机？是也不是，因为我确实喜欢深蓝色 :)</p>
-<p>大约是1998年我接触到计算机（一台80286，感谢我的父母），自然不知道也不懂1997年的这件大事。但是这次不同了，上天给了我们一次见证历史的机会。</p>
-<p>这篇文章的标题是「见证历史」，但如果AlphaGo输了，那还见证个啥呢？（笑）</p>
-<p>随着第一战越来越近，各路专业人士也发表了自己的看法。我大致总结了一下：</p>
-<p>围棋选手，基本看好李世石，主流意见是李世石占有压倒性的优势。<br>「我是看好李世石5-0胜，我认为没有别的比分，如果出现别的比分，那么我认为都是商业行为。」中国国家围棋队总教练俞斌如是说。这是比较极端的一类表态。</p>
-<p>人工智能专家，基本看好 AlphaGo，主流意见是双方水平伯仲之间，AlphaGo胜率略大。<br>也许一些人工智能专家已经是在保守表态了，毕竟 AlphaGo 是追赶者、挑战者。挑战的是我们人类对自身智力的骄傲。</p>
-<p>当然，也有学者认为 AlphaGo 会完胜李世石。</p>
-<p>我觉得这次 AlphaGo 应该会全力以赴，毕竟 Facebook 的围棋 AI 也蓄势待发，万一 First Blood 被 Facebook 拿了呢？</p>
-<p>各路表态中，李开复老师的意见较为和谐，认为 AlphaGo 本次胜算不大，但未来1-2年内定会完成超越。我将文章附在下面，转自知乎上李开复老师的回答。</p>
-<p>另外，我相信 AlphaGo 会赢，我也希望它赢。我觉得，哪怕李世石输了，哪怕所有围棋的顶尖高手都输了，这并不是对人类智慧的羞辱，这正是令人类的智慧熠熠发光的大好机会。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1633,7 +1667,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
