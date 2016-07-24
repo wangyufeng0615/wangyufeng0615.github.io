@@ -1,249 +1,579 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>安装大型Linux软件时一些关于下载的坑 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分享一些收获。
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="分享一些收获。
 有时候我们需要在Linux上安装一些大型的、组合性质的软件，软件一般都会提供安装脚本，脚本在执行的过程中会下载很多其他软件。鉴于我兔独特的网络环境，一般情况下安装过程都不会一帆风顺的。 以前安装过一个trac，当时怎么也没弄好，还好高老师为我指出一条康庄大道，就是用Bitnami的傻瓜安装包。我现在一琢磨，当时trac的问题应该就是依赖项没下载下来。Bitnami上确实有不少现成的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装大型Linux软件时一些关于下载的坑">
-<meta property="og:url" content="http://yoursite.com/2016/07/14/mhn-install/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://wangyufeng.org/2016/07/14/mhn-install/index.html">
+<meta property="og:site_name" content="Final Answer">
 <meta property="og:description" content="分享一些收获。
 有时候我们需要在Linux上安装一些大型的、组合性质的软件，软件一般都会提供安装脚本，脚本在执行的过程中会下载很多其他软件。鉴于我兔独特的网络环境，一般情况下安装过程都不会一帆风顺的。 以前安装过一个trac，当时怎么也没弄好，还好高老师为我指出一条康庄大道，就是用Bitnami的傻瓜安装包。我现在一琢磨，当时trac的问题应该就是依赖项没下载下来。Bitnami上确实有不少现成的">
-<meta property="og:updated_time" content="2016-07-15T10:06:58.000Z">
+<meta property="og:updated_time" content="2016-07-16T04:54:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装大型Linux软件时一些关于下载的坑">
 <meta name="twitter:description" content="分享一些收获。
 有时候我们需要在Linux上安装一些大型的、组合性质的软件，软件一般都会提供安装脚本，脚本在执行的过程中会下载很多其他软件。鉴于我兔独特的网络环境，一般情况下安装过程都不会一帆风顺的。 以前安装过一个trac，当时怎么也没弄好，还好高老师为我指出一条康庄大道，就是用Bitnami的傻瓜安装包。我现在一琢磨，当时trac的问题应该就是依赖项没下载下来。Bitnami上确实有不少现成的">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangyufeng.org/2016/07/14/mhn-install/"/>
+
+  <title> 安装大型Linux软件时一些关于下载的坑 | Final Answer </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-mhn-install" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/14/mhn-install/" class="article-date">
-  <time datetime="2016-07-14T03:33:19.000Z" itemprop="datePublished">2016-07-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      安装大型Linux软件时一些关于下载的坑
-    </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
   
 
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Final Answer</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Wang Yufeng's personal blog.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                安装大型Linux软件时一些关于下载的坑
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-07-14T11:33:19+08:00" content="2016-07-14">
+              2016-07-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p>分享一些收获。</p>
 <p>有时候我们需要在Linux上安装一些大型的、组合性质的软件，软件一般都会提供安装脚本，脚本在执行的过程中会下载很多其他软件。鉴于我兔独特的网络环境，一般情况下安装过程都不会一帆风顺的。 以前安装过一个trac，当时怎么也没弄好，还好高老师为我指出一条康庄大道，就是用Bitnami的傻瓜安装包。我现在一琢磨，当时trac的问题应该就是依赖项没下载下来。Bitnami上确实有不少现成的安装包，如果大家需要在Linux下装大型软件的，比如LAMP啥的，不妨去看一看。带给你在Windows上安装软件的体验。</p>
 <p>以前装过Openstack，这两天在弄MHN。虽然这两个东西都提供了安装脚本(<code>install.sh</code>)，但是脚本中要下载大量的依赖项，很多时候问题就出在依赖项的下载上。</p>
-<p>##GFW</p>
-<p>主要就是GFW的问题。</p>
+<h2 id="GFW"><a href="#GFW" class="headerlink" title="GFW"></a>GFW</h2><p>主要就是GFW的问题。</p>
 <p>执行<code>./install.sh</code>后的依赖安装很多，一部分内容被GFW墙了。我的解决方案是使用代理，在Linux下使用代理，比起Windows和OS X都要麻烦一些。</p>
 <p>我是用 Shadowsocks + Proxychains 的组合，相当好用，在命令行中也能指定需要使用代理的命令。百度已经屏蔽了shadowsocks关键词，需要上google的话可以用google镜像，或者用bing等搜索引擎。</p>
 <p>但有时候，用代理去执行命令，比如<code>proxychains ./install.sh</code>也会存在问题，比如本地的连接(127.0.0.1)不能被代理正确的处理。这时候就需要<code>vim ./install.sh</code>或者用其他文件编辑器来编辑安装脚本。比如说，找到被墙的资源，把那行代码单独复制出来用代理来下载，再将那行代码注释掉，再运行安装脚本。但要注意上下文，比如<code>cd</code>的目录等等，避免把安装包反放错位置。</p>
 <p>这里有时候会存在一个坑，比如脚本自动在下一个文件<code>file.tar.gz</code>，但是由于资源被墙，下载速度极慢或者根本没速度，我用<code>Ctrl+C</code>取消了脚本，但可能这个文件已经生成了，是一个损坏的、不完整的文件。哪怕之后再用翻墙了的命令去下载同一文件，新下载的文件会被命名为<code>file.tar.gz.2</code>，但安装脚本只认<code>file.tar.gz</code>。所以要及时rm掉不完整的文件。</p>
 <p>AWS上的资源基本都被墙了，绝大多数下载不了。需要从AWS上下载资源的命令，基本都以<code>wget</code>开头。也有一部分<code>git clone</code>也会从AWS上下资源。Google的资源也一样，值得注意的是，如果脚本中有<code>go get</code>命令，这是Golang的在线下载包的命令，毫无疑问已经被墙了…但是这个ERROR并不会终止脚本，而是继续运行下去。需要手动从浏览器下载相应的包，放在恰当的位置，再注释掉<code>go get</code>命令，才能让接下来的<code>go build</code>正常运行。</p>
-<p>##apt-get或者yum</p>
-<p>我这次用的Ubuntu，所以是apt-get。如果是Debian的话就是yum。</p>
+<h2 id="apt-get或者yum"><a href="#apt-get或者yum" class="headerlink" title="apt-get或者yum"></a>apt-get或者yum</h2><p>我这次用的Ubuntu，所以是apt-get。如果是Debian的话就是yum。</p>
 <p>apt-get默认是从us的服务器更新list和下载包，虽然我知道这个锅不应该甩在GFW身上，但下载的速度确实挺慢的，我大概是10k/s。</p>
 <p>国内很多厂商和大学都提供了apt源，把apt源换成国内的话速度会快很多。大概就是把源列表复制到<code>/etc/apt/source.list</code>里。国内的apt源建议用aliyun的。</p>
 <p>需要注意的是（很多网上的教程都没提到这一点），就是<strong>一定要注意apt源的版本</strong>，比如Ubuntu 14.04的版本号是<code>trusty</code>，那源列表中应该也都是<code>trusty</code>；Ubuntu 12.04的版本号是<code>precise</code>，比如我搜索到的是14.04的apt源，但我的系统版本是12.04，那我需要把源列表中的trusty换为precise。如果没换的话，会引起各种各样奇怪的问题，而且都很难还原。</p>
-<p>##一些很慢的资源</p>
-<p>有些资源在Linux中下载的可能就是特别慢，wget本身就慢，再加上人家服务器不行什么的。</p>
+<h2 id="一些很慢的资源"><a href="#一些很慢的资源" class="headerlink" title="一些很慢的资源"></a>一些很慢的资源</h2><p>有些资源在Linux中下载的可能就是特别慢，wget本身就慢，再加上人家服务器不行什么的。</p>
 <p>这时候可以在Windows或者Mac上用迅雷下载资源，有会员的开离线下载，很快下完。然后再用<code>pscp</code>(Windows)或者<code>scp</code>（Mac）指令将文件传到Linux里。</p>
 <p>如果Linux安装在虚拟机中的话，需要将虚拟机的网络连接模式改为<code>bridge</code>，这样虚拟机就能分配到独立的ip地址，而不是跟宿主机同IP。</p>
-<p>##Google,Stackoverflow</p>
-<p>能搜索到很多问题，但不一定能搜索到解决方案。</p>
+<h2 id="Google-Stackoverflow"><a href="#Google-Stackoverflow" class="headerlink" title="Google,Stackoverflow"></a>Google,Stackoverflow</h2><p>能搜索到很多问题，但不一定能搜索到解决方案。</p>
 <p>我有一个感觉，就是很多的问题都能造成同样的表象，但是背面的原因可能各种各样，所以需要多搜索搜索。</p>
 <p>另外想说的是，同样的问题建议也用Baidu搜索一下，因为有些问题的出现属于中国特色，只有国人的解决方案能帮咱们的忙。</p>
-<p>##Python2和Python3</p>
-<p>据我观察，现在还是用Python2的多，所以不需要的话，最好别装Python3，保持Python和pip版本的一致。能从apt-get和yum下载的软件尽量不要源码编译，否则卸载或者更换版本的话会比较麻烦。</p>
-<p>##重装</p>
-<p>如果觉得环境已经被折腾的乱七八糟的了，最好还是重新装一个干净的环境吧。</p>
+<h2 id="Python2和Python3"><a href="#Python2和Python3" class="headerlink" title="Python2和Python3"></a>Python2和Python3</h2><p>据我观察，现在还是用Python2的多，所以不需要的话，最好别装Python3，保持Python和pip版本的一致。能从apt-get和yum下载的软件尽量不要源码编译，否则卸载或者更换版本的话会比较麻烦。</p>
+<h2 id="重装"><a href="#重装" class="headerlink" title="重装"></a>重装</h2><p>如果觉得环境已经被折腾的乱七八糟的了，最好还是重新装一个干净的环境吧。</p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/14/mhn-install/" data-id="ciqoofwj6001xq96chwipdyub" class="article-share-link">Delen</a>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/13/jia-su-du-he-fen-bei-md/" rel="next" title="jia-su-du-he-fen-bei.md">
+                <i class="fa fa-chevron-left"></i> jia-su-du-he-fen-bei.md
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2016/07/13/jia-su-du-he-fen-bei-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">jia-su-du-he-fen-bei.md</div>
-    </a>
-  
-</nav>
+  </article>
 
-  
-</article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
+
+    <div class="post-spread">
+      
     </div>
   </div>
 
 
-  
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
   </div>
 
 
+        </div>
+        
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Wang Yufeng" />
+          <p class="site-author-name" itemprop="name">Wang Yufeng</p>
+          <p class="site-description motion-element" itemprop="description">Wang Yufeng's personal blog.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GFW"><span class="nav-number">1.</span> <span class="nav-text">GFW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apt-get或者yum"><span class="nav-number">2.</span> <span class="nav-text">apt-get或者yum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些很慢的资源"><span class="nav-number">3.</span> <span class="nav-text">一些很慢的资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Google-Stackoverflow"><span class="nav-number">4.</span> <span class="nav-text">Google,Stackoverflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python2和Python3"><span class="nav-number">5.</span> <span class="nav-text">Python2和Python3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重装"><span class="nav-number">6.</span> <span class="nav-text">重装</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
     </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Yufeng</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  </div>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

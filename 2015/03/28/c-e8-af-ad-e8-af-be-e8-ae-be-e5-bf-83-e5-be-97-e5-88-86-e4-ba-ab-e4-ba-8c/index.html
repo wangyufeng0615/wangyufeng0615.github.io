@@ -1,232 +1,578 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>C语课设心得分享(二) | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="咱们今儿说说IDE的事儿。IDE是「集成开发环境」的意思，比如咱们常用的VC6.0，就是开发C语言所用的IDE的一种。对于IDE的认识，可能有些朋友有点儿模糊，咱们捋一捋，我也会给出一些IDE方面的建议。下面内容都是靠印象撸的，懒得一一考证了，如有错误还请指出。VC的全称是Visual C++，是「微软」公司的一款产品，对于咱们来说，最常用的功能就是写C语言用。在VC6.0中写好程序后，咱们需要先">
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="咱们今儿说说IDE的事儿。IDE是「集成开发环境」的意思，比如咱们常用的VC6.0，就是开发C语言所用的IDE的一种。对于IDE的认识，可能有些朋友有点儿模糊，咱们捋一捋，我也会给出一些IDE方面的建议。下面内容都是靠印象撸的，懒得一一考证了，如有错误还请指出。VC的全称是Visual C++，是「微软」公司的一款产品，对于咱们来说，最常用的功能就是写C语言用。在VC6.0中写好程序后，咱们需要先">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语课设心得分享(二)">
-<meta property="og:url" content="http://yoursite.com/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://wangyufeng.org/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c/index.html">
+<meta property="og:site_name" content="Final Answer">
 <meta property="og:description" content="咱们今儿说说IDE的事儿。IDE是「集成开发环境」的意思，比如咱们常用的VC6.0，就是开发C语言所用的IDE的一种。对于IDE的认识，可能有些朋友有点儿模糊，咱们捋一捋，我也会给出一些IDE方面的建议。下面内容都是靠印象撸的，懒得一一考证了，如有错误还请指出。VC的全称是Visual C++，是「微软」公司的一款产品，对于咱们来说，最常用的功能就是写C语言用。在VC6.0中写好程序后，咱们需要先">
 <meta property="og:updated_time" content="2015-07-27T08:02:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语课设心得分享(二)">
 <meta name="twitter:description" content="咱们今儿说说IDE的事儿。IDE是「集成开发环境」的意思，比如咱们常用的VC6.0，就是开发C语言所用的IDE的一种。对于IDE的认识，可能有些朋友有点儿模糊，咱们捋一捋，我也会给出一些IDE方面的建议。下面内容都是靠印象撸的，懒得一一考证了，如有错误还请指出。VC的全称是Visual C++，是「微软」公司的一款产品，对于咱们来说，最常用的功能就是写C语言用。在VC6.0中写好程序后，咱们需要先">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wangyufeng.org/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c/"/>
+
+  <title> C语课设心得分享(二) | Final Answer </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Final Answer</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Wang Yufeng's personal blog.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
         
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c/" class="article-date">
-  <time datetime="2015-03-28T07:22:23.000Z" itemprop="datePublished">2015-03-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/代码/">代码</a>
-  </div>
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      C语课设心得分享(二)
-    </h1>
+      
+    </ul>
   
 
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                C语课设心得分享(二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-03-28T15:22:23+08:00" content="2015-03-28">
+              2015-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <div id="article_content" class="article_content">咱们今儿说说IDE的事儿。<br><div></div><br><div>IDE是「集成开发环境」的意思，比如咱们常用的VC6.0，就是开发C语言所用的IDE的一种。对于IDE的认识，可能有些朋友有点儿模糊，咱们捋一捋，我也会给出一些IDE方面的建议。下面内容都是靠印象撸的，懒得一一考证了，如有错误还请指出。</div><br><div></div><br><div>VC的全称是Visual C++，是「微软」公司的一款产品，对于咱们来说，最常用的功能就是写C语言用。在VC6.0中写好程序后，咱们需要先点「编译」，再点「链接」，这是什 么意思呢？大家可能多多少少听说过，C语言用记事本也能写，确实如此。方法大致如下，首先在记事本中写好C语言编写的程序，然后你需要有一个 gcc.exe的程序，然后利用一些参数，比如gcc xxx.c -o xxx.exe，这样就会生成一个xxx.exe文件，这个就是最终生成的可执行文件，也就是编好的程序。没了？没了。编译的过程是将.c变为.obj、 链接的话是把.obj变为.exe，GCC、包括咱们用的VS，一般都把这两个过程二合一了（当然也可通过参数拆开来做）。</div><br><div>如果说gcc(GNU C Compiler)是一把锤子，Visual C++ 6.0就相当于是一个超级强大的工具箱。当然，VC中也是有编译器的，只是用的不是gcc，而是微软自己写的编译器。</div><br><div>所以说，IDE只是个工具的集合，最基本工具的工作原理是一致的，有这么个概念比较好。</div><br><div></div><br><div>可能有人要问了，咱们学的不是C语言吗？为啥用Visual C++呢？有C语言专用的IDE吗？</div><br><div>回答上面三个问题。①C++这门语言在设计时，就考虑到兼容C语言的语法和标准库(从名字也能看的出来)，所以C语言可看做 是C++的一个子集，也就是说在C++的IDE中编写C语言是完全可行的。（ps，C++的那种编译锤子叫g++）。②因为VC好使啊，微软大法好。③ 有，比如 Turbo C，「Borland」公司的产品，这款软件是一种以屎蓝色为背景色的、以屎黄色为字体颜色的、不用使用鼠标的一款上古化石。不造大家还记得不记得咱们C 语课本上为啥有个函数死活VC不认(大概是randomize())，因为这是一个TC(Turbo C简称)中的函数，到了VC年代已经被无情抛弃了，从这里也能看出为啥我不推荐大家看太多课本。其实咱们这次课设要用到的EasyX库，就是用TC时代的 graphic.h库重新打包过来的，以方便在VC上运行。</div><br><div></div><br><div>再说说Dev-c，Code Blocks等IDE，这些IDE都是很不错的(一般是使用标准的gcc编译器，自带)，启动速度快。但是对于咱们这次的课设，我还是推荐大家使用 VS(或者VC)。比如Dev-cpp已经已经停止更新了，而且我就没成功调试过一次。Code Blocks的调试功能相比VC也是差的比较远。而且有个比较大的问题，就是EasyX这个库貌似在VC/VS上与运行效果比较好。</div><br><div></div><br><div>还有就是非常重要的调试问题，以前咱们的课后习题，我在做的过程中最多就用过F10单步调试，当然还有很多大神用瞪眼调试法。做这个课设，至少用到了断点、条件断点、变量监视、单步调试的功能，这些都是DC或者CB所很难负担的。关于调试回头再专门来写。</div><br><div></div><br><div>接着说VS，VS的全 程是Visual Studio，是微软的一种工具箱大杂烩，意思是VS不仅可以编写C++，还能有VB，C#等等软件，以微软自己的产品为主。所以Java基本是不用想 了。其实，咱们在VS中编C语言，其实还是用VS中的VC，版本的话大概是VC2010、VS2012这些。我课设用的是VS2012，比较稳定。因为装 了个VA插件，所以代码看上去都是挺漂亮的。关于这些和字体、排版等问题回头也再单说吧。VC的话可能在代码高亮上就比较挫。</div><br><div></div><br><div>忘拉单子了，好像IDE这个话题内还想写几个东西但是忘了，想起来再补充吧。</div><br></div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c/" data-id="ciqoofvil0008q96clzl08q2d" class="article-share-link">Delen</a>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/28/c-e8-af-ad-e8-a8-80-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-80/" rel="next" title="C语言课设心得分享(一)">
+                <i class="fa fa-chevron-left"></i> C语言课设心得分享(一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-89/" rel="prev" title="C语课设心得分享(三)">
+                C语课设心得分享(三) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
-  
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-<nav id="article-nav">
-  
-    <a href="/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
-      <div class="article-nav-title">
+  </div>
+
+
+        </div>
         
-          C语课设心得分享(三)
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Wang Yufeng" />
+          <p class="site-author-name" itemprop="name">Wang Yufeng</p>
+          <p class="site-description motion-element" itemprop="description">Wang Yufeng's personal blog.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2015/03/28/c-e8-af-ad-e8-a8-80-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-80/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">C语言课设心得分享(一)</div>
-    </a>
-  
-</nav>
+    </main>
 
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-</article>
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Yufeng</span>
+</div>
 
-</section>
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七系公众号存档/">七系公众号存档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/">北工大</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/北工大/学习/">学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随感/">随感</a></li></ul>
-    </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/xu/">xu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/xu/" style="font-size: 10px;">xu</a> <a href="/tags/学习/" style="font-size: 10px;">学习</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/07/14/mhn-install/">安装大型Linux软件时一些关于下载的坑</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/13/jia-su-du-he-fen-bei-md/">jia-su-du-he-fen-bei.md</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/10/wen-ming-zhi-guang-du-shu-bi-ji-1/">《文明之光1》读书笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/14/weekly-report-sophomore-2-12/">12周周报</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/16/i386/">32位还是64位？ | 七系</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  </div>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
