@@ -248,6 +248,199 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/10/原、反、补码学习笔记/" itemprop="url">
+                  数制，原反补码，浮点数学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-10T14:30:58+08:00" content="2015-09-10">
+              2015-09-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其实也不是笔记，我上课从来不记笔记，呃，懒。</p>
+<p>结合参考资料，写一写我对这几天学习内容的想法。大家可选择性阅读。</p>
+<p>有些东西是上课没说到的。</p>
+<p>##010101</p>
+<p>先从二进制说起。</p>
+<p>####为什么计算机需要用二进制存储数据？</p>
+<p>二进制中只有「0」和「1」。</p>
+<p>计算机是通电的，那么在电的世界中，</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-9-10/72692184.jpg" alt=""></p>
+<p>没通电的的就是「0」，通电的就是「1」。</p>
+<p>为什么是二进制呢？因为这种「无」和「有」的二元对立关系，是非常好实现的。试想，如果要造一个「十进制计算机」，那就要创造出一种能够表达10种状态的东西，还得能够对这10种状态进行准确的观察、计算，难度很大。「电」的特性正好满足二进制的需求。「高电平」就是1，「低电平」就是0。</p>
+<p>你可能会问了，那电压有大有小的，为啥就只有0和1，不会出个0.5呢？</p>
+<p>如果是计科的同学，咱们这学期在同时学的两门课「数电」（数字逻辑）和「模电」（电路设计），就和这相关。数电是抽象，把电路抽象成0和1，关注其中的逻辑部分，性质是离散的。而模电就是研究具体的电路，和实际世界关系紧密，性质是连续的。</p>
+<p>如果说这是数字电路的话：</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-9-10/88810670.jpg" alt=""></p>
+<p>那这就是模拟电路：</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-9-10/92889196.jpg" alt=""></p>
+<p>##进制</p>
+<p>一张很有意思的漫画：</p>
+<p><img src="http://7xku3h.com1.z0.glb.clouddn.com/15-9-10/27697363.jpg" alt=""></p>
+<p>收藏多年。很有意思。</p>
+<p>人类之所以用十进制，很可能跟人类长了10跟手指头有关系。在计算机中，2进制-8进制-16进制的互换是很方便的。可以想象，如果人类进化出8根手指头，学习计算机的难度大概会大大降低。或者说，人类长了<code>2^n,n∈k</code>跟手指头。哈。</p>
+<p>##为什么课本上的原码、反码和补码都是8位？<br>在计算机中，一位0或者1叫做一个<code>比特</code>，8个比特可组成一个<code>字节</code>。所以8位是很常用的。在C语言中，int型占用4个字节，也就是32位。double型占用8个字节，即64位。</p>
+<p>书上都写成八位，大概是为了方便吧，毕竟8位的用途很广，最早的CPU也是8位的。课本上没说理由。</p>
+<p>另外，不论是原、反、补码，最高位（最左边那位）都是符号位，1是负数，0是正数。也就是说具体的数值的部分，只能靠7位比特来实现。</p>
+<p>##原、反、补码<br>大家在刚学C语言的时候，大概都会遇到一个现象，就是<code>溢出</code></p>
+<p>比如我有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int n = 2147483647;</div></pre></td></tr></table></figure></p>
+<p>这是int型能表达的最大值，这时我<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">n++; printf(n);</div></pre></td></tr></table></figure></p>
+<p>这时候n显示的值是<code>-2147483648</code></p>
+<p><strong>从最大值变成了最小值！</strong>发生了什么呢，从课堂上的内容就很好理解，因为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">01111111111111111111111111111111 + 1 =</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10000000000000000000000000000000</div></pre></td></tr></table></figure>
+<p>最前面的1意味着这是一个负数。</p>
+<p><em>到现在我也没太想清楚，一个范围内最小的这个数，补码是怎样被处理的。求指点。</em></p>
+<hr>
+<p>这里假定大家对原码、反码和补码的特征已经掌握了，那咱们来分别分析一下。</p>
+<p>###原码</p>
+<p>原码的最高位是符号位。其他位数表示数值。</p>
+<p>在课上，咱们了解到原码有个缺点是<code>同时有+0和-0</code>，其实这还不是什么严重的问题。毕竟<code>-0</code>在计算机中是有用的，后面说到。</p>
+<p>“绝对值相等的正数和负数”相加应该是<code>0</code>，但是在原码中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1+(-1) 即 0001 + 1001 = 1010</div></pre></td></tr></table></figure></p>
+<p><code>1010</code>在原码中明显是<code>-2</code>. 正1和负1相加，得负2.</p>
+<blockquote>
+<p>坑爹啊，原码根本没法用。</p>
+</blockquote>
+<p>###反码</p>
+<p>为了保证正负数相加得0，便采用了反码。</p>
+<p>比如在四位的反码中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7 + 1 即 0111 + 0001 = 1000</div></pre></td></tr></table></figure></p>
+<p>即<code>7 + 1 = -7</code></p>
+<p>此时反码就已经有了”<em>表示范围内的最大的数+1，等于表示范围内的最小的数</em>“这一特征。(即溢出)</p>
+<p>反码巧妙地解决了原码正负数相加不得零的问题。但是还有个遗留问题，就是<strong>仍然有正负两个0</strong>。</p>
+<p>其实负0在某些情况下是有用的，在<code>Javascript</code>语言中就有负0.有时候，当一个负数特别特别接近零，以至于精度都不足以将它显示出来时，就表示为-0.以便和真正的0区分开来。</p>
+<p>###补码<br>补码就是为了解决正负两个0的问题。</p>
+<p>通俗来讲，补码就是在反码的基础上，把所有负数的表示范围减小了一格。例如原来能表示<code>-7 ~ -0</code>，现在就能表示<code>-8 ~ -1</code>，-0自然就没有了。</p>
+<p>补码在”绝对值相等的正负数相加”这件事儿上，一定会产生一个<code>进位</code>，把<code>进位</code>舍弃后，结果即为0.</p>
+<p>现在正1加负1就得0了，正确。</p>
+<p>###溢出<br>溢出的本质现在就明白了。正是因为数字在计算机中全部以补码表示，而补码的特点就是会溢出。</p>
+<p>其实别的语言还好，但C语言的设计思路就是「充分信任程序员」，所以C语言假定你很清楚「int型的最大值是2147483647」。呵呵。</p>
+<p>##再论补码</p>
+<p>理论上，补码的学名是<code>2的补码</code>或<code>2的补数</code>，即「Two’s Complement」.</p>
+<p>重温一下，补码的转换方式是</p>
+<ol>
+<li>各位取反</li>
+<li>加1</li>
+</ol>
+<p>其实对于计算机来说，采用什么码都可以，比如咱们今天上课讲到「BCD码」，BCD码中竟然就有「8421码」、「2421码」、「余3码」等等等等种类。只要能在数字和编码之间，形成一一对应的关系即可。但不同种类的编码自然有不同的特点。为什么补码用来表示计算机中的一切数字呢？</p>
+<p>根据查到的资料来看，补码的优点之一是：<strong>如果使用补码，那么所有的加法都可以用一种电路完成。</strong></p>
+<p>老师在课上提到，在计算机中，减法会被归约为加法。比如</p>
+<p>$$<br>5 - 3 → 5 + (-3)<br>$$</p>
+<p>而原码就没法做这种规约，如果使用原码的话，加法是一套电路（加法器），还需要专门实现一套「减法器」。</p>
+<p>##定点数和浮点数<br>似乎课上对于这两样东西只是一带而过，这里简单提一提。</p>
+<p>定点数：小数点是固定的(即位置是默认的)。比如说银行存款的系统，就适合用定点数来表示，因为存款的话，需要在计算机中储存的数字，都是只有小数点后两位（100,000.00￥）。定点数中，小数点的位置是由硬件/软件固定好的。</p>
+<p>浮点数：就是咱们在计算机中常用的用来储存小数的方法。float和double都算是浮点数。</p>
+<p>咱们学过科学计数法。浮点数的实现依托于科学计数法。咱们来分析一下<code>double型</code>。</p>
+<p>double的学名是<code>双精度浮点数</code>。前面提到，double型占用8个字节，即64位。那这64位都是干啥的呢？</p>
+<p>位数的分配如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s = 1 位符号位 | e = 11 位指数位 | f = 52位有效数字</div></pre></td></tr></table></figure>
+<p>它形如<br>$$<br>(-1)^s*1.f*2^{e-1023}<br>$$</p>
+<p>为什么最左边是-1的s次方呢？因为<code>s=0</code>的话，该数就是正数，如果s = 1的话，改数就是负数。<strong>这就是「最高位符号位」的实现原理</strong>。巧妙吧。</p>
+<p>那个1023是偏移量，跟无符号数转为有符号数有关(即把一半的表示范围分给负数部分)。</p>
+<p>细节就略过了，反正我也不懂。符号位即是管正负的。指数为决定了小数点的位置，所以叫<strong>浮点数</strong>。就好比是科学计数法中，e后边的数字。表示这个纯小数乘10的多少次方。每乘一个10，小数点向左浮动一位。反之亦然。</p>
+<p>大家知道，电脑中有两个重要的部件，分别是「CPU」和「GPU」。GPU也即显卡的核心芯片。那为什么GPU用来运算图形就特别快，而CPU就无法胜任呢？因为<strong>GPU是专门用来计算浮点数的</strong>。而计算机要想显示出图形来，就需要运算大量的浮点数。为啥GPU算浮点数就快呢？大概跟硬件层面上的设计和指令集有关系吧，毕竟术业有专攻。</p>
+<p>现在挖比特币，超级计算机阵列等等，都大量使用GPU，因为这些任务都对浮点数的运算有高要求。</p>
+<p>##拓展阅读：</p>
+<p>说一下浮点数的形式中的<code>f</code>和<code>e</code>。</p>
+<p>在<code>Javascript</code>这门语言中，根本就没有整数，一切数字都是用浮点数表示的。在Javascript中，除了普通的数字，还有NaN，+Infinity，-Infinity。</p>
+<p>参考上方的「double型浮点数的形式」，在Javascript中有如下处理：</p>
+<ul>
+<li>当 e = 0 且 f = 0 时，该数为0；</li>
+<li>当 e = 255 且 f = 0 时，该数为±Infinity(正负无穷)，具体的正负值由s决定。</li>
+<li>当 e = 255 且 f ≠ 0 时，该数位NaN(Not a Number)。即「不是一个数」。比如除数为0时，结果就是NaN。</li>
+</ul>
+<p>计算机的电路很原始的，大概只能算算加法，做做位运算。什么乘啊除啊都没法直接做，更遑论那些函数啥的了。但计算机毕竟是离散的，而且也是不嫌烦的。比如说要计算正弦函数，对<code>Sin(x)</code>进行泰勒展开，有<br>$$<br>sin(x)=x-x^3/3!+x^5/5!-x^7/7!+……<br>$$<br>大约只需要展开六七项，精度就可以满足double类型的精度了。</p>
+<p>别问我泰勒展开是啥，我不会（泪目）。大一的同学们，且听我一言：</p>
+<p><strong>请一定要好好学高等数学。和一切数学。</strong></p>
+<hr>
+<blockquote>
+<p>参考资料</p>
+<p>〔1〕赵岩 . C语言点滴 . 人民邮电出版社, P58</p>
+<p>〔2〕Charles Petzold . CODE . 电子工业出版社, P365</p>
+<p>〔3〕贾熹滨等 . 数字逻辑基础与Verilog硬件描述语言 . 清华大学出版社, P9</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/09/programming-guide-for-freshman-3/" itemprop="url">
                   计算机专业新生指南(之三)
                 </a>
@@ -1694,170 +1887,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/27/seven-department-2/" itemprop="url">
-                  七系 | 探究一下我们用的编程工具
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-27T16:22:38+08:00" content="2015-07-27">
-              2015-07-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/七系公众号存档/" itemprop="url" rel="index">
-                    <span itemprop="name">七系公众号存档</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天推个小文，从编译型语言和解释型语言出发，说说不同类别的编程工具。<br>本人水平有限，错误在所难免，恳请大家指教。<br>关键词：IDE、文本编辑器、编译/解释。</p>
-<p>这是【七系】的第    2    篇文章。</p>
-<p>##引言</p>
-<p>大家上完了两学期的课，根据专业的不同，我们分别接触了C、C++、Java。那么，我们都是在用什么软件编写它们呢？</p>
-<p>VC？VS？对，他俩差不多是一回事儿，且听下文分析。Java的话呢？Eclipse 或者 NetBeans。</p>
-<p>上述这类软件，统称「IDE」，即集成开发环境。「集成」的意思，是 IDE 集成了很多很多的功能，都给你打包好了，好比一个万能工具箱。</p>
-<p>除了使用IDE软件这种编程方式，还可以文本编辑器，例如 Windows 自带的记事本、Notepad++、Sublime Text、Vim 等，都可以。</p>
-<p>这两种方式（IDE、文本编辑器）从本质上来说并无区别，使用哪个取决于需求、便利程度、开发人员的喜好、语言的特性等因素。</p>
-<p>图：VS2015</p>
-<p>##编译型语言？解释型语言？</p>
-<p>上面提到，语言的特性影响编程工具的选择。我按照我的理解说一说。</p>
-<p>C、C++、Java 都属于编译型语言，我们暂时还没接触到解释型语言（大神请自觉回避）。</p>
-<p>我们首先回顾一下编译型语言的原理。我们写出了一段C语言的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">int main()&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>最终要处理这些代码的设备是 CPU，而 CPU 只是一堆电路，读不懂这么高级的 C 语言（还记得吗，C语言被称作高级语言）。</p>
-<p>当我们在 IDE，例如 VS 中，写好代码并点击「编译」时（很多人的习惯是直接点运行，此时弹出的对话框就是在问你是否要编译），IDE 会调用一个叫做「编译器」的小程序，简单来说，这个程序会把你的程序最终转换为01010101的代码（对中间的过程感兴趣的话请参见下篇），CPU直接处理1010101的代码（它叫做机器语言）是非常迅速的。</p>
-<p>这就是编译型语言。</p>
-<p>##简单的原理</p>
-<p>你也许听说过，高手用记事本也能写程序。真的吗？确实如此。过程大体如下，如果不感兴趣可以跳过：</p>
-<blockquote>
-<ol>
-<li>将上述代码保存在 test.c 文件中(.c 文件就是文本文件，本质上和.txt 文件是一样的)。</li>
-<li>开始——运行——CMD，打开命令行。</li>
-<li>找到编译器（例如：gcc.exe，这是一个编译C语言的编译器）。</li>
-<li>运行命令：<br> gcc -o test test.c</li>
-<li>此时，生成的 test.exe 就是你要的程序。</li>
-</ol>
-</blockquote>
-<p>IDE 的工作，就是用两个按钮帮我们解决这一切，所以说IDE效率很高，很方便。</p>
-<p>也就是说，编译型语言，须在使用特定的软件（编译器）编译、链接后才能使用，如果手工操作所有过程的话会比较麻烦。且往往编译型语言（C++、Java）用来编写大型项目，其代码量、复杂程度都很巨大，在普遍情况下，需要用大型的软件配套开发以提高效率。</p>
-<p>图：漂亮的代码高亮</p>
-<p>##老朋友</p>
-<p>再回过头来说说 VC、VS，它们都是 Microsoft 公司的软件。</p>
-<p>问：它们的区别到底是什么？<br>答：VC 通常指 Visual C++ 6.0，是一个已经过时了的软件，如果还在用 VC6.0，建议换新的版本。<br>VS 指 Visual Studio，是一个超级大工具包，能编写很多种语言。其中的一个模块是 Visual C++的新版本，也就是我们平时所使用的。只是我们习惯于叫他 VS。</p>
-<p>问：为什么不建议使用 VC？<br>答：因为 VC++6.0是很老的软件了，我们能接触到它，仅仅是因为学校机房还安装着它。就好比你有 Win7 的时候，就并不想用 Win98 了。而且，C++的新标准陆续更新，VC++6.0无法支持C++语言新的特性。</p>
-<p>问：为什么他们都叫 Visual C++，但是却可以使用C语言？<br>答：<br>因为 C++ 语言在设计时，便设计为可以完全兼容 C 语言。我们在 VS 中写 C 语言，相当于在使用 C++语言中的一个子集。如今纯正的 C<br>语言 IDE 已经极少了，老玩家应该还记得蓝底白字的 Turbo C。顺带一提，咱们课设所使用的 EasyX<br>就是那个年代的产物，移植过来的，大家感受下。</p>
-<p>C/C++是个常用的叫法，因为这两种语言关系很紧密。</p>
-<p>值得一提的是，gcc.exe(一款开源的 C 编译器)和 g++.exe（一款开源的 C++ 编译器）都不是微软公司的产品。VS中所使用的编译器是微软特制的，配套VS、VC等微软自家IDE使用。</p>
-<p>也就是说，一种语言可能有很多种编译器，它们出自不同公司、不同组织之手。编译时，它们也许会遵循同一套标准、也许并不会。它们中有些是免费开源的、有些是商业收费的。</p>
-<p>那 Java 是什么情况呢？Java 语言常用的编译器是 javac.exe（甲骨文公司发布的JDK自带），javac.exe 将 Java 代码翻译为「字节码」，然后将字节码放置在叫做「JVM」的虚拟机中运行。这个虚拟机是 Java 语言所宣称的「跨平台性」的关键。</p>
-<p>将来有机会咱们再聊 Java 语言的事儿。</p>
-<p>注：Visual Studio 2015 for Community 是VS的免费版，功能足够咱们学生使用，没必要用专业版的破解版。又大还麻烦。</p>
-<p>##那么解释型语言又是怎样的呢？</p>
-<p>Python、PHP、JavaScript 都是解释型语言，也许大家听说过它们的名字（大神请自觉回避）。每种语言，也有配套的解释器程序，通俗的理解是：解释器读一行代码，就执行（解释）一行代码。由于没把代码翻译成CPU最喜闻乐见的10101010，所以解释型语言执行起来相对 C/C++ 和 Java 都是比较慢的。当然它们也有许多优点，优点之一就是执行起来方便。</p>
-<blockquote>
-<p>拿 JavaScript 举例，它的解释器内置在浏览器中（如：Chrome的V8引擎），直接把 JavaScript 往浏览器里的特定位置一粘贴，点一下运行，代码就直接运行了，省去了编译等中间步骤。</p>
-</blockquote>
-<p>所以，解释型语言常常不使用大型的IDE来编写（当然也会有使用IDE的情况），而是用轻量级的文本编辑器来解决代码编写的问题。至于调试等等工作，往往还有其他的工具用以配套，并不集成在文本编辑器中。<br>解释型语言的优点之一就是代码少，如图，大家自行感受，1 2 3 5 6 7行都是HTML的代码，和 JavaScript 还没什么关系。</p>
-<p>##小结</p>
-<p>本文简单概述了解释型语言/编译型语言的区别，以及它们所使用编程工具种类不同的一种原因。</p>
-<p>希望能和大家共同探讨。</p>
-<p>下期见 :)</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1903,7 +1932,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
