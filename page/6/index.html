@@ -311,26 +311,31 @@
       
         
           
-            <p>原文发表于<span class="gray">2015-01-18</span></p>
-<p>&nbsp;</p>
-<p>一直听说Git好使，以前捣鼓过没弄成，现在考完试了终于可以静下心来研究研究。</p>
-<p>哎，我要是当时做课设的时候就用Git，也能省下不少事呢。</p>
-<p>&nbsp;</p>
-<p>使用的Git教程，刚看个开头：</p>
-<p>廖雪峰的Git教程</p>
-<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a></p>
-<p>CODE帮助文档</p>
-<p><a href="https://code.csdn.net/help/CSDN_Code/CODE_Support/Index" target="_blank" rel="external">https://code.csdn.net/help/CSDN_Code/CODE_Support/Index</a></p>
-<p>===========================================</p>
-<p>折腾半天，终于push上去了</p>
-<p>CODE : <a href="https://code.csdn.net/azzwacb9001/c_homework" target="_blank" rel="external">https://code.csdn.net/azzwacb9001/c_homework</a></p>
-<p>Github: <a href="https://github.com/wangyufeng0615/c_big_homework" target="_blank" rel="external">https://github.com/wangyufeng0615/c_big_homework</a></p>
-<p>===========================================</p>
-<p>下一步：</p>
-<p>①继续学习Git</p>
-<p>②研究一下不用VC如何建立一个C语言的工程</p>
+          原文发表于2015-01-18
+&nbsp;
+一直听说Git好使，以前捣鼓过没弄成，现在考完试了终于可以静下心来研究研究。
+哎，我要是当时做课设的时候就用Git，也能省下不少事呢。
+&nbsp;
+使用的Git教程，刚看个开头：
+廖雪峰的Git教程
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+CODE帮助文档
+https://code.csdn.net/help/CSDN_Code/CODE_Support/Index
+===========================================
+折腾半天，终于push上去了
+CODE : https://code.csdn.net/azzwacb9001/c_homework
+Github: https://github.com/wangyufeng0615/c_big_homework
+===========================================
+下一步：
+①继续学习Git
+②研
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/28/e5-b0-86c-e8-af-ad-e8-af-be-e8-ae-be-e4-bc-a0-e5-88-b0-e4-ba-86github-e5-92-8ccode-e4-b8-8a/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -441,103 +446,35 @@
       
         
           
-            <p>原文发表于<span class="gray">2014-10-25</span></p>
-<p>&nbsp;</p>
-<p>0.本来十分不解，不能理解形如</p>
-<p><pre class="cpp">int (*p)[100];</pre><br><span style="font-family: Courier New; background-color: #f0f0f0;">这样的东西。</span></p>
-<p>&nbsp;</p>
-<p><span style="font-family: Courier New; background-color: #f0f0f0;">1.</span></p>
-<p>百度了一下，大概理解数组指针如果用来处理二维数组，指向的是每”行“的第零个元素的地址。</p>
-<p>比如有：</p>
-<p><pre class="cpp">int array[100];<br>int (*p)[100];<br>p = array;<br>//第二行的100是个提示，提示你一行有100个元素</pre><br>那么有</p>
-<p><pre class="cpp"><em>(p)  //array[0]，即第零行第零个元素的地址
-</em>(p + i)  //array[i]<br><em>(p + i) + j    //array[i][j]的地址
-</em>(*(p + i) + j) //array[i][j]的值</pre><br>&nbsp;</p>
-<p>2.</p>
-<p>程序L11-1，功能是输入若干字符串，找出其中最长的一句</p>
-<p>原来用text[0]的实现：</p>
-<p><pre class="cpp">//L11-1</pre></p>
-<p>#include &lt;stdio.h&gt;</p>
-<p>#include &lt;string.h&gt;</p>
-<p>int main()<br>{<br>    char text[100][100] = {0};<br>    printf(“输入一些文本：\n”);</p>
-<pre><code>//输入文本
-int i = 0;
-while(1)
-{
-    gets(text[i]);
-
-    if (0 == strlen(text[i]))
-    {
-        break;
-    }
-    i++;
-}
-
-//处理
-int j = 0;
-char* max = text[j];
-for (j = 0; j &amp;lt; i; j++)
-{
-    if ( strlen(max) &amp;lt; strlen(text[j+1]) )
-    {
-        max = text[j+1];
-    }
-}
-
-printf(&quot;最长的行是%s&quot;,max);
-
-return 0;
-</code></pre><p>}<br><br>改用数组指针后：</p>
-<p><pre class="cpp">//L11-1</pre></p>
-<p>#include &lt;stdio.h&gt;</p>
-<p>#include &lt;string.h&gt;</p>
-<p>#include &lt;assert.h&gt;</p>
-<p>int main()<br>{<br>    char text[100][100] = {0};<br>    printf(“输入一些文本：\n”);</p>
-<pre><code>char (*p)[100];
-p = text;
-
+          原文发表于2014-10-25
+&nbsp;
+0.本来十分不解，不能理解形如
+int (*p)[100];这样的东西。
+&nbsp;
+1.
+百度了一下，大概理解数组指针如果用来处理二维数组，指向的是每”行“的第零个元素的地址。
+比如有：
+int array[100];int (*p)[100];p = array;//第二行的100是个提示，提示你一行有100个元素那么有
+(p)  //array[0]，即第零行第零个元素的地址
+(p + i)  //array[i](p + i) + j    //array[i][j]的地址
+(*(p + i) + j) //array[i][j]的值&nbsp;
+2.
+程序L11-1，功能是输入若干字符串，找出其中最长的一句
+原来用text[0]的实现：
+//L11-1
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(){    char text[100][100] = {0};    printf(“输入一些文本：\n”);
 //输入文本
 int i = 0;
-while(1)
-{
-    gets(*(p+i));
+while
+          ...
 
-    if (!strlen(*(p+i)))
-    {
-        break;
-    }
-    i++;
-}
-
-//处理
-int j = 0;
-
-char * max = *p;
-//char (*max)[100] = text;
-
-for (j = 0; j &amp;lt; i; j++)
-{
-    if ( strlen(max) &amp;lt; strlen(*(p+j)) )
-    {
-        max = *(p+j);
-    }
-}
-
-printf(&quot;最长的行是%s&quot;,max);
-
-return 0;
-</code></pre><p>}<br><br>3.</p>
-<p>此程序中有等价关系：</p>
-<p><pre class="cpp">int text[20][100] = {0};</pre></p>
-<p>int <em> p = text[0];<br>//等价于<br>int (</em>p)[100] = text;  //赋值关系是p = text;<br>&nbsp;</p>
-<hr>
-<p>4.仍然有疑问：</p>
-<p>这种所谓“指向数组的指针”和普通的指向一维数组的普通指针有何区别？</p>
-<p><pre class="cpp">int array1[10] = {0};<br>int * p1 = array1;</pre></p>
-<p>int array2[10][10] = {0};<br>int (*p2)[10] = array2;</p>
-<p>//这有区别？=.=<br>&nbsp;</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/28/e5-af-b9-e6-95-b0-e7-bb-84-e6-8c-87-e9-92-88-e7-9a-84-e7-90-86-e8-a7-a3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -648,90 +585,31 @@ return 0;
       
         
           
-            <p><span class="gray">原文发表于2014-10-22</span></p>
-<p>&nbsp;</p>
-<p><img src="http://img.blog.csdn.net/20141022171205404?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYXp6d2FjYjkwMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><img src="http://img.blog.csdn.net/20141022170722093?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYXp6d2FjYjkwMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>请教了一下@李劲 学长用啥图形库，学长推荐了EasyX，我就试了试做这个，原物是从《混沌与分形——科学的新疆界》p24页看到的。</p>
-<p>本来还想做的更动态一些，但是没搞清楚画出的线如何删掉，干脆就不划线了。用上下键可调速。</p>
-<p>疑问：</p>
-<p>①、如何有效地将程序暂停很短的时间？貌似Sleep函数只能最短暂停10ms左右。我用空循环模拟了暂停，但在VS的Release生成时就毫无效果，不知道是空循环的问题还是其他问题（我怀疑后者）。</p>
-<p>②、TCHAR如何用itoa等函数？（有wcscpy等TCHAR类型可使用的函数）</p>
-<p>&nbsp;</p>
-<p>感想：</p>
-<p>①复杂性科学好好玩，<strong>我想好好学数学-_-</strong></p>
-<p>②我想赶紧把c prime plus看完…最近都在干啥…</p>
-<p>&nbsp;</p>
-<p>说到数学，我想感谢@吴军博士 的书 @贺利坚老师 的书，让我这智商拙计的人在痛苦学数学的道路上多了几分决绝- -</p>
-<p><pre class="cpp">#include &lt;stdio.h&gt;</pre></p>
-<p>#include &lt;time.h&gt;</p>
-<p>#include &lt;graphics.h&gt;</p>
-<p>#include &lt;conio.h&gt;</p>
-<p>#include &lt;string.h&gt;</p>
-<p>#define TIMES 200000      //画点的次数</p>
-<p>#define SPEED 2000000      //初始速度(数值越大画得越慢，空循环次数)</p>
-<p>POINT pts_tri[3] = { {-200,0} , {200,0} , {0,350} }; //画布顶点<br>int x, y; //坐标<br>int dir; //方向键</p>
-<p>//画三角形边框<br>void draw_flame()<br>{<br>    polygon(pts_tri, 3);<br>}</p>
-<p>void draw()<br>{<br>    switch ( (rand() % 3) + 1 )<br>    {<br>    case 1 :<br>        putpixel((getx() + (-200)) / 2 , gety() / 2 , GREEN);<br>        x = (getx() + (-200)) / 2;<br>        y = gety() / 2;<br>        moveto(x, y);<br>        break;<br>    case 2 :<br>        putpixel((getx() + 200) / 2 , gety() / 2 , GREEN);<br>        x = (getx() + 200) / 2;<br>        y = gety() / 2;<br>        moveto(x, y);<br>        break;<br>    case 3 :<br>        putpixel(getx() / 2, (gety() + 350) / 2 , GREEN);<br>        x = getx() / 2;<br>        y = (gety() + 350) / 2;<br>        moveto(x, y);<br>        break;<br>    }<br>}</p>
-<p>int recieve_direction(int speed)<br>{<br>    dir = getch();<br>    if (-32 == dir)<br>        dir = getch();</p>
-<pre><code>//up 加速
-if (72 == dir)
-{
-    speed -= 999999;
-    if ((speed - 999999) &amp;lt;= 0)
-    {
-        speed = 0;
-        return speed;
-    }
-    return speed;
-}
+          原文发表于2014-10-22
+&nbsp;
 
-//down 减速
-if (80 == dir)
-    speed += 999999;
-return speed;
-</code></pre><p>}</p>
-<p>//itoa不能处理TCHAR，outtextxy又只能用TCHAR-_-<br>void print_text(int speed, TCHAR* text_1)<br>{<br>    settextcolor(WHITE);<br>    outtextxy(-180, 320, text_1);</p>
-<pre><code>/*    
-TCHAR text_speed[10] = {0};
-_itoa(speed, text_speed, 10);
-wcscpy(text_speed, speed);
-outtextxy(-180, 300, text_speed);
-*/
-</code></pre><p>}</p>
-<p>int main()<br>{<br>    int speed = SPEED; //速度</p>
-<pre><code>srand((unsigned)time(NULL));
+请教了一下@李劲 学长用啥图形库，学长推荐了EasyX，我就试了试做这个，原物是从《混沌与分形——科学的新疆界》p24页看到的。
+本来还想做的更动态一些，但是没搞清楚画出的线如何删掉，干脆就不划线了。用上下键可调速。
+疑问：
+①、如何有效地将程序暂停很短的时间？貌似Sleep函数只能最短暂停10ms左右。我用空循环模拟了暂停，但在VS的Release生成时就毫无效果，不知道是空循环的问题还是其他问题（我怀疑后者）。
+②、TCHAR如何用itoa等函数？（有wcscpy等TCHAR类型可使用的函数）
+&nbsp;
+感想：
+①复杂性科学好好玩，我想好好学数学-_-
+②我想赶紧把c prime plus看完…最近都在干啥…
+&nbsp;
+说到数学，我想感谢@吴军博士 的书 @贺利坚老师 的书，让我这智商拙计的人在痛苦学数学的道路上多了几分决绝- -
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;graphics.h&gt;
+#include &lt;conio.h&g
+          ...
 
-initgraph(640, 480);    //画布
-setorigin(320, 400);    //坐标原点
-setaspectratio(1, -1);    //坐标轴正向
-
-draw_flame(); //画边框
-
-moveto(0, 0); //初始点，尚无随机效果
-
-TCHAR text_1[] = _T(&quot;↓ +   ↑ -&quot;); //坐标轴已经上下反过来了怎么办-_-
-
-for (int i = 0; i &amp;lt; TIMES; i++)
-{
-    draw();
-    print_text(speed, text_1); //显示速度
-
-    //检测上下按键，改变速度
-    while (kbhit())
-    {
-        speed = recieve_direction(speed);
-    } 
-
-    //调速
-    for (int j = 0; j &amp;lt; speed; j++)
-        ;
-}
-
-getchar();
-return 0;
-</code></pre><p>}<br><br>&nbsp;</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/28/e8-b0-a2-e5-b0-94-e5-ae-be-e6-96-af-e5-9f-ba-e4-b8-89-e8-a7-92-e5-bd-a2-ef-bc-8c-e6-b7-b7-e6-b2-8c-e6-b8-b8-e6-88-8f-e5-ae-9e-e7-8e-b0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -842,15 +720,15 @@ return 0;
       
         
           
-            <p>原文发表于<span class="gray">2014-10-08</span></p>
-<p>&nbsp;</p>
-<p>今天C语小测验，这个思路还被老师批判了一番=.=</p>
-<p>&nbsp;</p>
-<p>产生一个疑问：这个程序我循环10W次，如果在CMD里把每次循环的结果都显示出来，就得大约用半分钟的时间。如果我不printf每次的结果，大概3秒钟就能出最后的答案。</p>
-<p>&nbsp;</p>
-<p>是CMD里的刷新速度有限制吗？有啥办法能既显示数据又能充分利用CPU的能力？</p>
-<p>&nbsp;</p>
-<pre class="cpp">#include &lt;stdio.h&gt;
+          原文发表于2014-10-08
+&nbsp;
+今天C语小测验，这个思路还被老师批判了一番=.=
+&nbsp;
+产生一个疑问：这个程序我循环10W次，如果在CMD里把每次循环的结果都显示出来，就得大约用半分钟的时间。如果我不printf每次的结果，大概3秒钟就能出最后的答案。
+&nbsp;
+是CMD里的刷新速度有限制吗？有啥办法能既显示数据又能充分利用CPU的能力？
+&nbsp;
+#include &lt;stdio.h&gt;
 #include &lt;time.h&gt;
 #include &lt;stdlib.h&gt;
 //实验多少次
@@ -865,55 +743,14 @@ int main()
     int rabbit, chick;
     int i; //每次试验蒙的次数
     int* count = malloc(sizeof(int)*TIME); //count指针
-    int times = 0; //试验的总次数
-    int* count_first = count; //记录count的最初地址
+    int times = 0; //试验
+          ...
 
-    srand((unsigned)time(NULL));
-
-    while(1)
-    {
-        rabbit = rand()%36;
-        chick = rand()%36;
-        i++;
-
-        if (35 == rabbit + chick &amp;&amp; 94 == rabbit * 2 + chick * 4)
-        {
-                if (1 == ECHO)
-                {
-                    printf("%-4d次瞎蒙，得出兔子有%d个，鸡有%d枚，程序走了%d次\n",i,rabbit,chick,times);
-                }
-
-                *count = i; //把当前试验的次数保存到count
-                count++;
-                times++;
-                i = 0;
-                    while (TIME == times)
-                    {
-                        goto break_all; //跳出大循环
-                    }
-        }
-    }
-    break_all:
-
-    calculate_average(count, times, count_first);
-
-    return 0;
-}
-
-void calculate_average(int * count, int times, int* count_first)
-{
-    int sum = 0;
-    int j;
-
-    for (j = 0; j &lt; times; j++)
-    {
-        sum += *count_first;
-        count_first++;
-    }
-    printf("经过了%d试验,每次平均瞎蒙了%5d次\n",times,sum/times);
-}
-</pre>
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/28/e9-b8-a1-e5-85-94-e5-90-8c-e7-ac-bc-e9-9a-8f-e6-9c-ba-e6-95-b0-e7-9e-8e-e8-92-99-e7-9a-84-e5-ae-9e-e7-8e-b0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1024,12 +861,12 @@ void calculate_average(int * count, int times, int* count_first)
       
         
           
-            <p>原文发表于<span class="gray">2014-08-26</span></p>
-<p>&nbsp;</p>
-<p>群里聊天，听说上一届C语言的课设是做个迷宫，我当然是不会啦，但从视觉效果上我写了这么个东西。喜感啊</p>
-<p>疑问：</p>
-<p>①SetConsoleOutputCP，是否跟那个啥Unicode的页有关系？</p>
-<pre class="cpp">#include &lt;stdio.h&gt;
+          原文发表于2014-08-26
+&nbsp;
+群里聊天，听说上一届C语言的课设是做个迷宫，我当然是不会啦，但从视觉效果上我写了这么个东西。喜感啊
+疑问：
+①SetConsoleOutputCP，是否跟那个啥Unicode的页有关系？
+#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;windows.h&gt;
 
@@ -1048,34 +885,14 @@ int main()
             {   
                 j = rand();
                 if      (j &gt; 0 &amp;&amp; j &lt;= 3000)
-                    {}
-                else if (j &gt; 3000 &amp;&amp; j &lt;= 6000)
-                    printf("%c",185);  
-                else if (j &gt; 6000 &amp;&amp; j &lt;= 9000)
-                    printf("%c",186);  
-                else if (j &gt; 9000 &amp;&amp; j &lt;= 12000)
-                    printf("%c",187);  
-                else if (j &gt; 12000 &amp;&amp; j &lt;= 15000)
-                    printf("%c",188);  
-                else if (j &gt; 15000 &amp;&amp; j &lt;= 18000)
-                    printf("%c",200);  
-                else if (j &gt; 18000 &amp;&amp; j &lt;= 21000)
-                    printf("%c",201);  
-                else if (j &gt; 21000 &amp;&amp; j &lt;= 24000)
-                    printf("%c",202);  
-                else if (j &gt; 27000 &amp;&amp; j &lt;= 29000)
-                    printf("%c",203);  
-                else 
-                    printf("%c",204);   
-            } 
-    } 
+ 
+          ...
 
-    getchar();
-    return 0;    
-}
-
-</pre>
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/28/e8-af-b4-e5-88-b0-e5-85-b3-e4-ba-8e-e8-bf-b7-e5-ae-ab-e8-af-be-e8-ae-be/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1167,17 +984,23 @@ int main()
       
         
           
-            <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new "My New Post"
+More info: Writing
+Run server1$ hexo server
+More info: Server
+Generate static files1$ hexo generate
+More info: Generating
+Deploy to remote sites1$ hexo deploy
+More info: Deployment
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/1970/01/01/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
