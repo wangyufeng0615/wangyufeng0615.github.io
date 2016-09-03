@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="WangYufeng, Hexo, 王雨峰" />
+  <meta name="keywords" content="王雨峰, 博客" />
 
 
 
@@ -90,7 +90,7 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
 <meta property="og:type" content="article">
 <meta property="og:title" content="EasyX中的TCHAR转换">
 <meta property="og:url" content="http://wangyufeng.org/2016/04/11/char-to-tchar/index.html">
-<meta property="og:site_name" content="二向箔批发集散中心">
+<meta property="og:site_name" content="王雨峰的博客">
 <meta property="og:description" content="EasyX 库中的 outtextxy()函数只能接受TCHAR格式的参数。
 提供几种用过的常用数据格式转TCHAR的方法，供参考。如果不行，不妨再用 Google。关键词：xxx to TCHAR.
 ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。他们都是为了处理Unicode字符而存在的，在咱们的EasyX程序中就是为了处理中文，但是其他西文字符也得转成TC">
@@ -106,13 +106,13 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: 0,
-      author: '博主'
+      author: '작성자'
     }
   };
 </script>
@@ -122,24 +122,14 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
 
   <link rel="canonical" href="http://wangyufeng.org/2016/04/11/char-to-tchar/"/>
 
-  <title> EasyX中的TCHAR转换 | 二向箔批发集散中心 </title>
+  <title> EasyX中的TCHAR转换 | 王雨峰的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
 
   
 
 
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?ef2ba54d8ab8280f985e639e3fe7b0c9";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -163,11 +153,11 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">二向箔批发集散中心</span>
+      <span class="site-title">王雨峰的博客</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">Wang Yufeng's personal blog.</p>
+  <p class="site-subtitle">王雨峰的博客</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -190,7 +180,17 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            홈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            카테고리
           </a>
         </li>
       
@@ -200,7 +200,7 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
@@ -210,7 +210,17 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            아카이브
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            태그
           </a>
         </li>
       
@@ -263,7 +273,7 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">작성일</span>
             <time itemprop="dateCreated" datetime="2016-04-11T08:41:21+08:00" content="2016-04-11">
               2016-04-11
             </time>
@@ -316,11 +326,6 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
     <div>
       
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="http://7xku3h.com1.z0.glb.clouddn.com/16-7-24/45639834.jpg" alt="Wang Yufeng wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎扫一扫二维码，关注我的微信公众号~</div>
-</div>
-
 
       
     </div>
@@ -398,10 +403,10 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+            목차
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            흝어보기
           </li>
         </ul>
       
@@ -409,34 +414,34 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="http://7xku3h.com1.z0.glb.clouddn.com/16-7-24/48788944.jpg"
-               alt="Wang Yufeng" />
-          <p class="site-author-name" itemprop="name">Wang Yufeng</p>
-          <p class="site-description motion-element" itemprop="description">Wang Yufeng's personal blog.</p>
+               src="/images/avatar.gif"
+               alt="王雨峰" />
+          <p class="site-author-name" itemprop="name">王雨峰</p>
+          <p class="site-description motion-element" itemprop="description">Alan Wang's personal blog.</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">56</span>
-              <span class="site-state-item-name">日志</span>
+              <span class="site-state-item-name">포스트</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">分类</span>
-              
+                <span class="site-state-item-name">카테고리</span>
+              </a>
             </div>
           
 
           
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">标签</span>
-              
+                <span class="site-state-item-name">태그</span>
+              </a>
             </div>
           
 
@@ -452,32 +457,6 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
         
 
         
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.devchen.com/" title="Sykie Chen 的博客" target="_blank">Sykie Chen 的博客</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://115.28.210.221/" title="Duodenum 的小站" target="_blank">Duodenum 的小站</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://iblogs.xyz/" title="有趣独立的技术博客导航" target="_blank">有趣独立的技术博客导航</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://imisswonder.com/" title="iMissWonder 的博客" target="_blank">iMissWonder 的博客</a>
-                </li>
-              
-            </ul>
-          </div>
         
 
       </section>
@@ -512,17 +491,17 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Wang Yufeng</span>
+  <span class="author" itemprop="copyrightHolder">王雨峰</span>
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a> 
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Muse
   </a>
 </div>
 
@@ -588,13 +567,6 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
   
   
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
@@ -621,26 +593,6 @@ ps. wchar_t 和 TCHAR 在EasyX的应用中是一个意思，用哪个都行。�
   
 
   
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
 
   
 
