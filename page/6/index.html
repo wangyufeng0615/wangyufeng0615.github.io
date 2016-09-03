@@ -238,6 +238,118 @@
             
               
                 
+                <a class="post-title-link" href="/2015/03/28/c-e8-af-ad-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-ba-8c/" itemprop="url">
+                  C语课设心得分享(二)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-28T15:22:23+08:00" content="2015-03-28">
+              2015-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="article_content" class="article_content">咱们今儿说说IDE的事儿。<br><div></div><br><div>IDE是「集成开发环境」的意思，比如咱们常用的VC6.0，就是开发C语言所用的IDE的一种。对于IDE的认识，可能有些朋友有点儿模糊，咱们捋一捋，我也会给出一些IDE方面的建议。下面内容都是靠印象撸的，懒得一一考证了，如有错误还请指出。</div><br><div></div><br><div>VC的全称是Visual C++，是「微软」公司的一款产品，对于咱们来说，最常用的功能就是写C语言用。在VC6.0中写好程序后，咱们需要先点「编译」，再点「链接」，这是什 么意思呢？大家可能多多少少听说过，C语言用记事本也能写，确实如此。方法大致如下，首先在记事本中写好C语言编写的程序，然后你需要有一个 gcc.exe的程序，然后利用一些参数，比如gcc xxx.c -o xxx.exe，这样就会生成一个xxx.exe文件，这个就是最终生成的可执行文件，也就是编好的程序。没了？没了。编译的过程是将.c变为.obj、 链接的话是把.obj变为.exe，GCC、包括咱们用的VS，一般都把这两个过程二合一了（当然也可通过参数拆开来做）。</div><br><div>如果说gcc(GNU C Compiler)是一把锤子，Visual C++ 6.0就相当于是一个超级强大的工具箱。当然，VC中也是有编译器的，只是用的不是gcc，而是微软自己写的编译器。</div><br><div>所以说，IDE只是个工具的集合，最基本工具的工作原理是一致的，有这么个概念比较好。</div><br><div></div><br><div>可能有人要问了，咱们学的不是C语言吗？为啥用Visual C++呢？有C语言专用的IDE吗？</div><br><div>回答上面三个问题。①C++这门语言在设计时，就考虑到兼容C语言的语法和标准库(从名字也能看的出来)，所以C语言可看做 是C++的一个子集，也就是说在C++的IDE中编写C语言是完全可行的。（ps，C++的那种编译锤子叫g++）。②因为VC好使啊，微软大法好。③ 有，比如 Turbo C，「Borland」公司的产品，这款软件是一种以屎蓝色为背景色的、以屎黄色为字体颜色的、不用使用鼠标的一款上古化石。不造大家还记得不记得咱们C 语课本上为啥有个函数死活VC不认(大概是randomize())，因为这是一个TC(Turbo C简称)中的函数，到了VC年代已经被无情抛弃了，从这里也能看出为啥我不推荐大家看太多课本。其实咱们这次课设要用到的EasyX库，就是用TC时代的 graphic.h库重新打包过来的，以方便在VC上运行。</div><br><div></div><br><div>再说说Dev-c，Code Blocks等IDE，这些IDE都是很不错的(一般是使用标准的gcc编译器，自带)，启动速度快。但是对于咱们这次的课设，我还是推荐大家使用 VS(或者VC)。比如Dev-cpp已经已经停止更新了，而且我就没成功调试过一次。Code Blocks的调试功能相比VC也是差的比较远。而且有个比较大的问题，就是EasyX这个库貌似在VC/VS上与运行效果比较好。</div><br><div></div><br><div>还有就是非常重要的调试问题，以前咱们的课后习题，我在做的过程中最多就用过F10单步调试，当然还有很多大神用瞪眼调试法。做这个课设，至少用到了断点、条件断点、变量监视、单步调试的功能，这些都是DC或者CB所很难负担的。关于调试回头再专门来写。</div><br><div></div><br><div>接着说VS，VS的全 程是Visual Studio，是微软的一种工具箱大杂烩，意思是VS不仅可以编写C++，还能有VB，C#等等软件，以微软自己的产品为主。所以Java基本是不用想 了。其实，咱们在VS中编C语言，其实还是用VS中的VC，版本的话大概是VC2010、VS2012这些。我课设用的是VS2012，比较稳定。因为装 了个VA插件，所以代码看上去都是挺漂亮的。关于这些和字体、排版等问题回头也再单说吧。VC的话可能在代码高亮上就比较挫。</div><br><div></div><br><div>忘拉单子了，好像IDE这个话题内还想写几个东西但是忘了，想起来再补充吧。</div><br></div>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/03/28/c-e8-af-ad-e8-a8-80-e8-af-be-e8-ae-be-e5-bf-83-e5-be-97-e5-88-86-e4-ba-ab-e4-b8-80/" itemprop="url">
                   C语言课设心得分享(一)
                 </a>
@@ -1260,7 +1372,7 @@ int main()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
