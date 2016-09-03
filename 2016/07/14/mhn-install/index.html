@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="二向箔批发集散中心">
 <meta property="og:description" content="分享一些收获。
 有时候我们需要在Linux上安装一些大型的、组合性质的软件，软件一般都会提供安装脚本，脚本在执行的过程中会下载很多其他软件。鉴于我兔独特的网络环境，一般情况下安装过程都不会一帆风顺的。 以前安装过一个trac，当时怎么也没弄好，还好高老师为我指出一条康庄大道，就是用Bitnami的傻瓜安装包。我现在一琢磨，当时trac的问题应该就是依赖项没下载下来。Bitnami上确实有不少现成的">
-<meta property="og:updated_time" content="2016-07-16T04:54:48.000Z">
+<meta property="og:updated_time" content="2016-09-03T03:59:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装大型Linux软件时一些关于下载的坑">
 <meta name="twitter:description" content="分享一些收获。
@@ -292,6 +292,7 @@
         <p>分享一些收获。</p>
 <p>有时候我们需要在Linux上安装一些大型的、组合性质的软件，软件一般都会提供安装脚本，脚本在执行的过程中会下载很多其他软件。鉴于我兔独特的网络环境，一般情况下安装过程都不会一帆风顺的。 以前安装过一个trac，当时怎么也没弄好，还好高老师为我指出一条康庄大道，就是用Bitnami的傻瓜安装包。我现在一琢磨，当时trac的问题应该就是依赖项没下载下来。Bitnami上确实有不少现成的安装包，如果大家需要在Linux下装大型软件的，比如LAMP啥的，不妨去看一看。带给你在Windows上安装软件的体验。</p>
 <p>以前装过Openstack，这两天在弄MHN。虽然这两个东西都提供了安装脚本(<code>install.sh</code>)，但是脚本中要下载大量的依赖项，很多时候问题就出在依赖项的下载上。</p>
+<a id="more"></a>
 <h2 id="GFW"><a href="#GFW" class="headerlink" title="GFW"></a>GFW</h2><p>主要就是GFW的问题。</p>
 <p>执行<code>./install.sh</code>后的依赖安装很多，一部分内容被GFW墙了。我的解决方案是使用代理，在Linux下使用代理，比起Windows和OS X都要麻烦一些。</p>
 <p>我是用 Shadowsocks + Proxychains 的组合，相当好用，在命令行中也能指定需要使用代理的命令。百度已经屏蔽了shadowsocks关键词，需要上google的话可以用google镜像，或者用bing等搜索引擎。</p>
