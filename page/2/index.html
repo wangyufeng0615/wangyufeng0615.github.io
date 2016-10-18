@@ -238,6 +238,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/07/c-switch/" itemprop="url">
+                  C 语言中为什么有 switch？ | 七系
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-07T18:30:02+08:00" content="2016-04-07">
+              2016-04-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果文中有BUG，请留言反馈，谢谢~</p>
+<hr>
+<p>C语言中，有且仅有三种基本语句结构</p>
+<ol>
+<li>顺序结构</li>
+<li>循环结构(<code>while</code>, <code>for</code>等)</li>
+<li>条件结构</li>
+</ol>
+<p>其中，条件结构有<code>if-else</code>和<code>switch-case</code>两种。还有<code>三元运算符</code>，形如<code>a &gt; b ? c : d;</code>不常用。</p>
+<p>经常地，<code>if-else</code>结构和<code>switch-case</code>结构可以相互转化。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">switch (day)</div><div class="line">&#123;</div><div class="line">    case &apos;1&apos; : printf(&quot;Monday\n&quot;);  break;</div><div class="line">    case &apos;2&apos; : printf(&quot;Tuesday\n&quot;); break;</div><div class="line">    case 1 : printf(&quot;1\n&quot;); break;	//注意1和&apos;1&apos;的区别</div><div class="line">    default : printf(&quot;error\n&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以转换成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">if (day == &apos;1&apos;)</div><div class="line">&#123;</div><div class="line">    printf(&quot;Monday\n&quot;);</div><div class="line">&#125; </div><div class="line">else if (day == &apos;2&apos;)</div><div class="line">&#123;</div><div class="line">    printf(&quot;Tuesday\n&quot;);</div><div class="line">&#125; </div><div class="line">else if (day == 1)</div><div class="line">&#123;</div><div class="line">    printf(&quot;1\n&quot;);</div><div class="line">&#125;</div><div class="line">else</div><div class="line">&#123;</div><div class="line">    printf(&quot;error\n&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>两者实现的功能是一样的。一般来说，<code>if-else</code>结构相对于<code>switch-case</code>结构来说更为灵活一些，比如，分支的条件可以是”一定范围”，但<code>switch-case</code>结构的条件变量必须是整数或字符，或枚举型。</p>
+<hr>
+<p>题外话：这里想强调的是，<code>switch-case</code>结构中的条件变量（例如本例中的<code>day</code>），如果存的是整数，需要注意数字和字符的区别。例如</p>
+<p>1</p>
+<p>表示整数1。而</p>
+<p>`1`</p>
+<p>表示字符`1`，对应的ASCII码为49。</p>
+<p>具体使用哪种，取决于你条件变量(<code>day</code>)的类型，例如，<code>int day;</code>或是<code>char day;</code>分别对应例子的前者和后者。这种<code>int</code>和<code>char</code>类型间的关系容易混淆，这是我学习 C 语言过程的困扰过我的问题。</p>
+<p>另外，在使用<code>switch-case</code>语句时，容易漏<code>break;</code>语句和<code>default</code>默认分支。虽然不写也可以，但容易引起BUG，且编译器不会报错。</p>
+<hr>
+<p>上面提到，<code>switch-case</code>结构的条件变量只能是一个确定的值，比如数字或单个字符，所以有时候<code>switch-case</code>结构并不适用，比如我这届以及我下一届的 C 语言课程都有这样一道课后作业，大意是90-100分是优，80-89分是良，要求统计全班优良信息，要求用<code>if-else</code>结构和<code>switch-case</code>结构分别实现。这种”范围判断”的情况，就不适合使用<code>switch-case</code>结构。这种情况，用<code>if-else</code>结构的话，很方便可以实现，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (grade &lt; 100 &amp;&amp; grade &gt; 90)</div><div class="line">&#123;</div><div class="line">	//xxx</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，下面这样是不行滴，至少在C语言中不行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if (90 &lt; grade &lt; 100)</div></pre></td></tr></table></figure>
+<p>那么，或许产生这样的疑问：既然所有的<code>switch-case</code>结构都能转换成<code>if-else</code>结构，那为什么还要有<code>switch-case</code>结构呢？</p>
+<p>结合资料，我说一下我自己的看法。</p>
+<p>###是为了速度快</p>
+<p>这学期我们学”计算机组成原理”，学到了MIPS指令这块，书中提到了<code>switch-case</code>语句的实现和<code>if-else</code>语句的区别之处，摘抄如下（《计算机组成与设计》中文第五版 P64）</p>
+<blockquote>
+<p>大多数程序设计语言中都包括 case 和 switch 语句，使得程序员可以根据某个变量的值选择不同分支之一。实现 switch 语句的最简单方法是借助一系列的条件判断，将 switch 语句转化为 if-then-else 语句。</p>
+<p>有时候另一种更有效的方法是将多个指令序列分支的地址编码为一张表，即<strong>转移地址表(jump address table)</strong>或<strong>转移表(jump table)</strong>，这样程序只需索引该表即可跳转到恰当的指令序列。</p>
+</blockquote>
+<p>总之，用这种转移表，再使用<code>jr</code>(jump register)指令，就能直接跳转到寄存器中存放的地址。速度会比较快。<code>if-else</code>结构，需要从头到尾一一比对，<code>switch-case</code>结构，直接查表就可以了。这种思路类似我觉得类似于路由控制表，即，建立一种一一对应的关系，避免遍历。</p>
+<p>C语言是上世纪70年代发明的，那时候计算机的速度远远不及今天这样快，计算能力也不富裕，所以性能上能省则省。像当今时代的 Java、Python 等等编程语言，执行速度通常比C语言慢，但是换来了更好的安全性、易用性等。Python 语言的语法继承自C语言，但是就没有<code>switch-case</code>结构。</p>
+<p>我想，有种更加量化的办法来验证两者的区别，即，用两种结构分别写两段功能上等价的代码，然后对比编译后的汇编代码。</p>
+<p>以上是我对 C 语言中<code>switch-case</code>结构的一些理解。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/29/2016-3-29/" itemprop="url">
                   三月末
                 </a>
@@ -1489,155 +1621,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/18/c-learning-1/" itemprop="url">
-                  C语言学习札记(一)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-18T17:45:10+08:00" content="2015-09-18">
-              2015-09-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本期写一些初学者学C语言时可能会遇到的问题，为什么说是「可能遇到」呢？因为这些基本上都是我在学习的过程中遇到过的问题，曾经困扰过我。文章内容都是基础的内容，如果你觉得阅读起来有困难，可能是因为你还没学到那里。别着急，可以先收藏这篇文章，学习的过程中，想到这个问题时可再回来看看。</p>
-<p>想到啥写啥。没时间列大纲了。</p>
-<p>分享给各位学弟学妹一个建议：<strong>请以审辩的态度去听取他人的建议，包括我的这条建议。</strong>为什么呢？因为大家所走的路，和你将要走的路，尤其是你 <em>想</em> 要走的路，很可能相差甚远。别人的建议可能对你来说没有价值，甚至对你有负面的价值。比如说，会有人说「C语言的细节很多，不用搞明白那些细节」，也有人说「C语言不重要，你直接看面向对象语言就行」。这些意见自然多多益善，但对你最了解的还是你自己。</p>
-<p>哈，上边出现了一个递归，你发现了吗？递归是咱们计算机科学中非常有意思的一件事，大家在学「函数」这章的时候，递归也是个不太容易理解的地方。不过大家可以放心，在C语言中，递归的方案完全可以转化为循环(while/for/do,for)的方案，除非在特殊的情况下，使用递归的场合不多。</p>
-<p>一周下来四晚有课，心堵。</p>
-<p>#如何向他人求助程序问题？</p>
-<p>##搜索引擎是你最好的帮手</p>
-<p>你所遇到的任何问题，有99.99%的几率，已经被别人遇到过了。在互联网上，有很多人在提问，也有很多热心的人在解答。将你的问题非口语化的描述，或报出的错误信息放在搜索引擎上查一查，一般问题都能得以解决。像是百度知道 / csdn和博客园的博客 / 知乎 之类的网站，存在着很多问题的解决方案。</p>
-<p>如果总是查不到，可能是选取的关键词、或错误信息的提取不够准确。多查查就有感觉了。</p>
-<p>##善用错误信息</p>
-<p>如果程序存在语法问题，那么在编译的时候，VS会给你报个错。这些Error都是有描述性的信息的，大多数情况下，根据这些信息便可以修正程序错误。但往往错误信息是<em>英文的</em>，但都不复杂，很容易读懂。大不了把错误信息在百度上搜一下。</p>
-<blockquote>
-<p>Tips，如果错误信息在百度上查一无所获，去Google上试一试，往往有惊喜。</p>
-</blockquote>
-<p>但有些情况下，VS给你的错误信息让你觉得莫名其妙，完全驴唇不对马嘴。这种情况也是常见的，毕竟VS不是万能的。这种情况下，请参见下一个建议：</p>
-<p>##再多读一遍<br>真的，这招太有用了。</p>
-<ul>
-<li>main → mian</li>
-<li>true → ture</li>
-<li>就算我按不序顺话说你能看也懂</li>
-</ul>
-<p>这种错误很容易犯，我现在写程序手一抖就打出个ture，然后还一点都看不出来。其实C语言还好，像是Javascript（大家以后可能会接触到）这样的『不那么严格的语言』，如果打错变量名，想找出错误来能把人累死。很多奇怪的问题都是由于细节的错误造成的，比如打错了字、少打了右大括号，打了不该打的分号，等等。如果问题就是特别奇怪，特别顽固，请试着再读一遍程序。</p>
-<p>当然了，编译器能报错这件事，就已经令人感到非常幸福了。将来大家都会写大课设，到时候就会发现，绝大多数错误都是编译器报不出来的。尤其是一些「确实已经写错了的地方，但是C语言编译器以为你想故意这样hack一下」的错误，就不得不需要调试的手段了。现在大家除了F10逐行运行之外，还不需要太多调试的方法，但养成好的写代码习惯，比如命名、代码格式等等，还是请从现在做起。</p>
-<p>#为什么能写C语言的程序有那么多？<br>你可能会发现，大家用于学习C语言的软件都不太一样。在机房，老师可能为大家展示VC6.0；你的同学中，有些人用Code::Blocks，有些人用着迷离的高端程序，你可能正在用VS2015.</p>
-<p>它们有什么区别？区别不大。它们都被称作「IDE」，都能写C语言。只是各种附加的工具不同。想详细了解「IDE」，可翻阅本公众号的往期文章。</p>
-<p>请注意：C语言不是程序，C语言只是一种『编程语言』。所以说用哪种「IDE」去学习，都是无关紧要的。我个人推荐大家使用VS。</p>
-<blockquote>
-<p>其实VS和其他的IDE还是有些区别，这些区别有时能能影响到大家。有时候，可能你同学写好的、能够完美运行的代码，完整复制到你的电脑上，却运行不正常，甚至没法编译。因为VS的「编译器」和其他的IDE多少有些不一样。甚至VS和VC也不一样。「编译器」决定了IDE如何去处理代码，而不同的编译器的处理方法有所不同。那应该怎么办？尽量使你的代码写的规范，就能大大避免这种问题。下面有相关的问题会提到。</p>
-</blockquote>
-<p>#注意 = 和 ==<br>在C语言中，</p>
-<ul>
-<li>= 叫做 赋值号</li>
-<li>== 叫做 等于判断符</li>
-</ul>
-<p>这事儿是个大坑，基本每个人都得栽里边儿，我就栽在里面很多很多次。</p>
-<p>比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if (a = 1)</div></pre></td></tr></table></figure></p>
-<p>这种语句，你的意思可能是如果a等于1，就怎么样。但在这里，会把 1 赋值给 a。关键在于，这种问题程序是不报错的。那为什么程序不报错呢？因为(a = 1)理论上可作为一个表达式，这个表达式也是可以表达值的。</p>
-<p>听说有些编译器会对这种情况报一个 Warning，因为这种错误实在是太常见了，专业的程序员也有时中招。</p>
-<blockquote>
-<p>理论上的建议是，不将『左值』作为变量名，也就是说只写(1 == a)而不是(a == 1)，因为这样的话就算是不小心少打了一个=，编译器就会报错。因为常数1不能被赋值。</p>
-</blockquote>
-<p>#到底是 void main 还是 int main ?<br>大家已经学习到了，C语言中最核心的函数是「主函数」，主函数就是形如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int main()&#123;</div><div class="line">	xxxxxx....</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样的函数。大家可能会注意到，在有些课件和书上的示例中，写的是<code>void main</code>，那到底哪个对？</p>
-<p>先给结论：<strong>只写</strong><code>int main</code></p>
-<p>int main 是目前最为规范的写法。C语言自诞生以来，并不是一成不变的。有些特性被淘汰、有些被更新、还有些新的特性加入，所以可以这样理解，void main 是一种历史遗留的写法，已经不用了。那为什么书上和课件上还有呢？大家可以注意观察下，有些课件的年龄已经10+了。或者说，咱们的老师学这门语言的时候，规范和今天并不一样。</p>
-<p>#主函数最后的 return 0 是什么意思？<br>其实这个<code>return 0</code>是可以不写的。如果不写的话，相当于「编译器」自动帮我们加上这行。return 0如果写的话，必须写在主函数的最后一行写。如果return 0后边还有语句，就不会被执行。</p>
-<p>大家观察<code>int main(){}</code>最前面的<code>int</code>。可能大家还没有学到「函数」，这里为大家介绍一下，C语言中的「函数」(function)和数学里的函数可以类比理解，即「给这个函数参数」，然后「函数返回给你结果」。所以在C语言中，函数名前面的「类型」就指的是「函数返回值的类型」。</p>
-<ul>
-<li>int add(1,2){ … } ， 表示 add 这个函数的返回值的类型是整型(整数)</li>
-<li>void run(){ … } , 表示 run 这个函数没有返回值(void 差不多是「nothing」的意思)</li>
-</ul>
-<p>那么，int main 的意思就是，<strong>主函数的返回值类型是整型</strong>。</p>
-<p>你也许会问，既然C语言中函数的返回值是给用户看的，那为什么主函数也有一个「返回值」呢？答案是这样的：对于普通的函数来说，调用他们的人是「主函数」，也就是说他们的返回值会返回给「主函数」。那么主函数是谁调用呢？是「操作系统」调用主函数。比如你的电脑是Windows 7，那么就是Windows 7 调用了这个主函数。</p>
-<p>那为什么需要返回值？当一个主函数返回一个「0」给操作系统时，操作系统就知道这个函数的运行结果「正常的」，也就是这个函数正常地运行完毕了。这就是 return 0 的意义。</p>
-<hr>
-<p>今天就发这几个吧。如果大家有任何问题，欢迎后台来留言或直接跟我聊。我保证，如果我不知道答案、也在网上查不到资料的话，我会说不知道，保证不跟你胡诌。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1683,7 +1666,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
