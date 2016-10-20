@@ -238,6 +238,108 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/18/智能时代读书笔记/" itemprop="url">
+                  《智能时代》读书笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T22:25:57+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>第一章：数据——人类建造文明的基石</li>
+<li>第二章：大数据和机器智能</li>
+<li>第三章：思维的革命</li>
+<li>第四章：大数据与商业</li>
+<li>第五章：大数据和智能革命的技术挑战</li>
+<li>第六章：未来智能化产业</li>
+<li>第七章：智能革命和未来社会</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/18/微信/" itemprop="url">
                   手机是我们的器官，微信是器官的大脑
                 </a>
@@ -1235,116 +1337,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/11/char-to-tchar/" itemprop="url">
-                  EasyX中的TCHAR转换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-11T08:41:21+08:00" content="2016-04-11">
-              2016-04-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>EasyX 库中的 <code>outtextxy()</code>函数只能接受<code>TCHAR</code>格式的参数。</p>
-<p>提供几种用过的常用数据格式转<code>TCHAR</code>的方法，供参考。如果不行，不妨再用 Google。关键词：xxx to TCHAR.</p>
-<p>ps. <code>wchar_t</code> 和 <code>TCHAR</code> 在EasyX的应用中是一个意思，用哪个都行。他们都是为了处理Unicode字符而存在的，在咱们的EasyX程序中就是为了处理中文，但是其他西文字符也得转成TCHAR。</p>
-<hr>
-<p>说明：</p>
-<ul>
-<li>源数据：source</li>
-<li>转换后的数据：dest</li>
-</ul>
-<p>###先要包含头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#include &lt;tchar.h&gt;</div></pre></td></tr></table></figure></p>
-<p>###直接输出TCHAR</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">outtextxy(x, y,  _T(&quot;要输出的字符串&quot;));</div></pre></td></tr></table></figure>
-<p>###string 转 TCHAR</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//先包含头文件</div><div class="line">#include &lt;atlstr.h&gt;	</div><div class="line"></div><div class="line">_tcscpy_s(dest, CA2T(source.c_str()));</div></pre></td></tr></table></figure>
-<h3 id="int-转-TCHAR"><a href="#int-转-TCHAR" class="headerlink" title="int 转 TCHAR"></a>int 转 TCHAR</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_stprintf_s(dest, _T(&quot;%d&quot;), source);</div></pre></td></tr></table></figure>
-<h3 id="char-转-TCHAR"><a href="#char-转-TCHAR" class="headerlink" title="char 转 TCHAR"></a>char 转 TCHAR</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_stprintf_s(dest, _T(&quot;%c&quot;), source);</div></pre></td></tr></table></figure>
-<p>或者 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MultiByteToWideChar(CP_ACP, 0, source, 20, dest, 20);</div><div class="line">//20是长度</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1390,7 +1382,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
